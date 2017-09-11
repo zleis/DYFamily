@@ -2,6 +2,7 @@ DYFamily/.idea/workspace.xml
 DYFamily/.idea/libraries/Maven__com_squareup_moshi_moshi_1_5_0.xml
 ##ignore this file##
 /target/ 
+/.idea/ 
 .classpath
 .project
 .settings      
@@ -36,4 +37,3 @@ DYFamily/.idea/libraries/Maven__com_squareup_moshi_moshi_1_5_0.xml
 .Trashes  
 Icon?  
 ehthumbs.db  
-Thumbs.db  
