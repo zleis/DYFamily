@@ -1,6 +1,9 @@
 package npu.manager.serviceImp;
 
 
+import com.alibaba.fastjson.JSONObject;
+import npu.manager.beans.User;
+import npu.manager.global.GlobalVariable;
 import npu.manager.service.UserService;
 import npu.manager.mapper.ManagerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,18 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public int userLogin() {
-        return 0;
+    public int userLogin(JSONObject paramJson) {
+
+        if((!paramJson.containsKey("uid")) || !paramJson.containsKey("pass")){
+            return GlobalVariable.LOGIN_ERROR;
+        }
+
+        String uid = paramJson.getString("uid");
+        String pass = paramJson.getString("pass");
+        User loginUser  = managerMapper.getUserByID(uid);
+        if(!loginUser.getPass().equals(pass)){
+            return GlobalVariable.LOGIN_ERROR;
+        }
+        return GlobalVariable.REQUEST_SUCCESS;
     }
 }

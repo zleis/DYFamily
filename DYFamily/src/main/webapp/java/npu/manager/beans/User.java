@@ -26,7 +26,7 @@ public class User {
     private String bid; // 所属党支部
     private Date registerTime; // 注册时间
     private String special; // 特长
-    private String cogition; // 党的认识
+    private String cognition; // 党的认识
     private int isComp; // 是否完善
 
     /**
@@ -212,15 +212,15 @@ public class User {
     /**
      * @return cogition : java.lang.String
      */
-    public String getCogition() {
-        return cogition;
+    public String getCognition() {
+        return cognition;
     }
 
     /**
      * @param cogition : java.lang.String
      */
-    public void setCogition(String cogition) {
-        this.cogition = cogition;
+    public void setCognition(String cogition) {
+        this.cognition = cogition;
     }
 
     /**
@@ -252,7 +252,7 @@ public class User {
                 ", bid='" + bid + '\'' +
                 ", registerTime=" + registerTime +
                 ", special='" + special + '\'' +
-                ", cogition='" + cogition + '\'' +
+                ", cogition='" + cognition + '\'' +
                 ", isComp=" + isComp +
                 '}';
     }

@@ -1,5 +1,8 @@
 package npu.manager.mapper;
 
+import npu.manager.beans.User;
+import org.apache.ibatis.annotations.Param;
+
 /**
  * Created by  on .
  *
@@ -8,4 +11,5 @@ package npu.manager.mapper;
  * @todo 数据库查询操作
  */
 public interface ManagerMapper{
+    public User getUserByID(@Param(value = "uid") String uid);
 }

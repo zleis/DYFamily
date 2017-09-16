@@ -10,5 +10,7 @@ package npu.manager.global;
  */
 public class GlobalVariable {
 
+    public static final int REQUEST_SUCCESS = 10000; // 用户请求正确
+    public static final int LOGIN_ERROR = 10001; // 登录失败
 
 }
