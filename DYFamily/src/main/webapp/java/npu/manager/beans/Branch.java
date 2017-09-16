@@ -1,4 +1,4 @@
-package nwpu.manager.beans;
+package npu.manager.beans;
 
 /**
  * Created by  on .

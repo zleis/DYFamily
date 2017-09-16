@@ -1,4 +1,4 @@
-package nwpu.manager;
+package npu.manager;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;

@@ -1,4 +1,4 @@
-package nwpu.manager.mapper;
+package npu.manager.mapper;
 
 /**
  * Created by  on .

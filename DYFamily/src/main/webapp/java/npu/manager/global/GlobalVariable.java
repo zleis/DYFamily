@@ -1,4 +1,4 @@
-package nwpu.manager.global;
+package npu.manager.global;
 
 /**
  * Created by  on .
@@ -6,7 +6,9 @@ package nwpu.manager.global;
  * @version ${version}
  * @autor ZLei
  * @date 2017/9/16
- * @todo 公用函数
+ * @todo 公用变量
  */
-public class GlobalFun {
+public class GlobalVariable {
+
+
 }
