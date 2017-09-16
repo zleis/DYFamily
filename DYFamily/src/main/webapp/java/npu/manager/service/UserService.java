@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @date 2017/9/16
  * @todo
  */
-@Service
+
 public interface UserService {
 
     /**

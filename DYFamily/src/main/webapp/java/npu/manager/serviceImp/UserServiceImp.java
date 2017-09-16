@@ -7,6 +7,7 @@ import npu.manager.global.GlobalVariable;
 import npu.manager.service.UserService;
 import npu.manager.mapper.ManagerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by  on .
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @date 2017/9/16
  * @todo
  */
+@Service("userService")
 public class UserServiceImp implements UserService {
 
     @Autowired
@@ -29,9 +31,8 @@ public class UserServiceImp implements UserService {
         if((!paramJson.containsKey("uid")) || !paramJson.containsKey("pass")){
             return GlobalVariable.LOGIN_ERROR;
         }
-
-        String uid = paramJson.getString("uid");
-        String pass = paramJson.getString("pass");
+        String uid = ((String[])paramJson.get("uid"))[0];
+        String pass = ((String[])paramJson.get("pass"))[0];
         User loginUser  = managerMapper.getUserByID(uid);
         if(!loginUser.getPass().equals(pass)){
             return GlobalVariable.LOGIN_ERROR;

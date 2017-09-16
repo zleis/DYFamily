@@ -22,7 +22,7 @@ public class GlobalFun {
      * @author ZLei
      * @date 2017/9/16
      * @param request
-     * @return HTTP 请求的JSON对象
+     * @return HTTP 请求的JSON对象 <String,String[]>
      * @todo 将HTTP请求中的参数转化为Json对象
      */
     public static JSONObject getParamFromRequest(HttpServletRequest request){

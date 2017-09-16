@@ -3,6 +3,8 @@ package npu.manager.controller;
 import com.alibaba.fastjson.JSONObject;
 import npu.manager.global.GlobalFun;
 import npu.manager.service.UserService;
+import npu.manager.serviceImp.UserServiceImp;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +25,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class UserController {
 
+    private Logger logger = Logger.getLogger(UserController.class);
+
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping("/hello")
     public String Test(Model model){

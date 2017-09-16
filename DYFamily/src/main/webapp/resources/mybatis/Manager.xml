@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "ManagerMapper">
+<mapper namespace = "npu.manager.mapper.ManagerMapper">
     <!-- 查询数据库的所有操作 注意分类 -->
     <resultMap id="userMap" type="npu.manager.beans.User">
         <result column="u_id" property="uid"/>
         <result column="u_pass" property="pass"/>
         <result column="u_name" property="name"/>
         <result column="u_sex" property="sex"/>
-        <result column="u_birth" property="birth" javaType="java.util.Date" jdbcType="java.sql.Date"/>
+        <result column="u_birth" property="birth"/>
         <result column="u_phone" property="phone"/>
         <result column="u_mail" property="mail"/>
         <result column="u_grade" property="grade"/>
@@ -19,7 +19,7 @@
         <result column="u_iscomp" property="isComp"/>
     </resultMap>
 
-    <select id="getUserByID" resultType="userMap">
+    <select id="getUserByID" resultMap="userMap">
         select * from user where u_id = #{uid}
     </select>
 
