@@ -27,7 +27,7 @@ import javax.sql.DataSource;
 @EnableAutoConfiguration
 @SpringBootApplication
 @ComponentScan
-@MapperScan("nwpu.manager.mapper")
+@MapperScan("npu.manager.mapper")
 public class Application {
     private static Logger logger = Logger.getLogger(Application.class);
 
