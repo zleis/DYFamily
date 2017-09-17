@@ -1,0 +1,46 @@
+
+* {
+	filter: none;
+}
+
+
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+
+
+/**  MAIN STYLES  **/
+html {
+	height: 100%;
+}
+
+body {
+	margin:0;
+	padding: 0;
+	height: 100%;
+	font-family: arial;
+	font-size: 20px;
+	background: #f7f7f7;
+	overflow-x: hidden;
+	color: #3B3E40;
+}
+
+a:link, a:active, a:visited {
+	text-decoration: none;
+	color: #5daced;
+}
+
+*:focus {
+	border: none;
+	outline: none;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/mycss.css" rel="stylesheet" type="text/css">
+    <link href="/css/sweet-alert.css" rel="stylesheet" type="text/css">
+
+    <script src="/js/jquery-3.0.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweet-alert.min.js" ></script>
+    <script src="/js/myjs.js"></script>
+    <title>注册</title>
+</head>
+<body>
+<header class="LRHead">
+    <h1>注册</h1>
+</header>
+<div class="LRBody">
+    <div class="LRForm">
+        <form  id = "RegisterForm" method="post" action="">
+            <div>
+                <input type="number" name="identityID" placeholder="学号" id = "RegisterID" /><br>
+                <input type="password" name="pass1" placeholder="密码" value="" id = "RegisterPass1" /><br>
+                <input type="password" name="pass2" placeholder="确认密码" value="" id = "RegisterPass2" /><br>
+            </div>
+        </form>
+        <button class="btn MySmBtn" id = "LR_Register" style="width: 200px;">注册</button>
+    </div>
+</div>
+<script src="/js/LR.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#LR_Register").click(function(){
+            var sendMess = "";
+            sendMess += "RType"        + "=" + $("#LRType input[name='RType']:checked").val() + "&";
+            sendMess += "identityID"  + "=" + $("#RegisterID").val()                           + "&";
+            sendMess += "pass1"        + "=" + $("#RegisterPass1").val()                       + "&";
+            sendMess += "pass2"        + "=" + $("#RegisterPass2").val();
+            var url      = "__URL__/HDRegister";
+            XMLHttpRequest.open("POST",url,true);
+            XMLHttpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            XMLHttpRequest.onreadystatechange = HDRegister;
+            XMLHttpRequest.send(sendMess);
+        });
+
+        function HDRegister(){
+            if(XMLHttpRequest.readyState == 4){
+                checkRegister(XMLHttpRequest.responseText);
+            }
+        }
+
+        function checkRegister(type){
+            switch(type){
+                case '0': window.location.href = "{:U('LR/Login')}"; break;
+                case '1': alerterror("系统未开放"); break;
+                case '2': alerterror("身份证号格式错误");  break;
+                case '3': alerterror("密码输入不一致");        break;
+                case '4': alerterror("密码不得必须由6~15位数字字母以及下划线组成");      break;
+                case '5': alerterror("账号已经注册"); break;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
