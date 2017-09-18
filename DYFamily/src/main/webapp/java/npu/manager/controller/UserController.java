@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -57,9 +59,13 @@ public class UserController {
      * @todo 用户登录后台判断
      * 请求时密码是md5加密
      */
-    @RequestMapping("/userLogin")
+    @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
     @ResponseBody
-    public String userLogin(HttpServletRequest request){
+    public String userLogin(HttpServletRequest request, HttpServletResponse response){
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
         JSONObject resJson = new JSONObject();
         JSONObject paramJson = GlobalFun.getParamFromRequest(request);
         int feedback = userService.userLogin(paramJson);
@@ -80,9 +86,13 @@ public class UserController {
      * @return java.lang.String
      * @todo 用户新账号注册
      */
-    @RequestMapping("/userRegister")
+    @RequestMapping( value = "/userRegister",method = RequestMethod.POST)
     @ResponseBody
-    public String userRegister(HttpServletRequest request){
+    public String userRegister(HttpServletRequest request, HttpServletResponse response){
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
         JSONObject resJson = new JSONObject();
 
         /**
@@ -100,7 +110,7 @@ public class UserController {
      * @return java.lang.String
      * @todo 更新个人信息
      */
-    @RequestMapping("/updateUserInfo")
+    @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     @ResponseBody
     public String updateUserInfo(HttpServletRequest request){
 
@@ -122,7 +132,7 @@ public class UserController {
      * @return java.lang.String
      * @todo 用户上传照片
      */
-    @RequestMapping("/uploadImage")
+    @RequestMapping( value = "/uploadImage", method = RequestMethod.POST)
     @ResponseBody
     public String uploadImage(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request){
 
@@ -133,10 +143,6 @@ public class UserController {
             String path = "src/main/webapp/resources/static/uploadImage/";
             GlobalFun.fileUpload(path,session.getAttribute("uid") + ".jpg",multipartFile);
         }
-        /**
-         * todo
-         */
-
         return resJson.toString();
     }
 }

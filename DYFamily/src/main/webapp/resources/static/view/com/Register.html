@@ -32,35 +32,24 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-        $("#LR_Register").click(function(){
-            var sendMess = "";
-            sendMess += "RType"        + "=" + $("#LRType input[name='RType']:checked").val() + "&";
-            sendMess += "identityID"  + "=" + $("#RegisterID").val()                           + "&";
-            sendMess += "pass1"        + "=" + $("#RegisterPass1").val()                       + "&";
-            sendMess += "pass2"        + "=" + $("#RegisterPass2").val();
-            var url      = "__URL__/HDRegister";
-            XMLHttpRequest.open("POST",url,true);
-            XMLHttpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            XMLHttpRequest.onreadystatechange = HDRegister;
-            XMLHttpRequest.send(sendMess);
+        $("#btnLogin").click(function () {
+
+            if($("#RegisterPass1").val() != $("#RegisterPass2").val()){
+                alerterror("两次密码输入不一致");
+                return;
+            }
+
+            var data = new Object();
+            var sendurl = "http://localhost:8080/user/userRegister";
+            data['uid'] = $("#RegisterID").val();
+            data['pass1'] =  hex_md5($("#RegisterPass1").val());
+            data['pass1'] =  hex_md5($("#RegisterPass2").val());
+            var resData = requestSend(sendurl, data);
+            if(loadResult(resData.feedback)){
+                swal("恭喜", "注册成功", "success");
+            }
+
         });
-
-        function HDRegister(){
-            if(XMLHttpRequest.readyState == 4){
-                checkRegister(XMLHttpRequest.responseText);
-            }
-        }
-
-        function checkRegister(type){
-            switch(type){
-                case '0': window.location.href = "{:U('LR/Login')}"; break;
-                case '1': alerterror("系统未开放"); break;
-                case '2': alerterror("身份证号格式错误");  break;
-                case '3': alerterror("密码输入不一致");        break;
-                case '4': alerterror("密码不得必须由6~15位数字字母以及下划线组成");      break;
-                case '5': alerterror("账号已经注册"); break;
-            }
-        }
     });
 </script>
 

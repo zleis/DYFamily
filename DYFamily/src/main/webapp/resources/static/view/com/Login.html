@@ -9,47 +9,43 @@
     <script src="/js/jquery-3.0.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/sweet-alert.min.js" ></script>
+    <script src="/js/md5.js"></script>
     <script src="/js/myjs.js"></script>
     <title>登录</title>
 </head>
 <body>
 
 <header class="LRHead">
-    <h1>西北工业大学报名系统</h1>
+    <h1>党员之家</h1>
 </header>
 <div class="LRBody">
     <div class="LRForm">
-        <form id="LoginForm" method="post" action="__URL__/HDLogin">
+        <form id="LoginForm" method="post">
             <div>
                 <input type="number" name="uNumber" placeholder="学号" id="LoginID"/><br>
                 <input type="password" name="uPass" placeholder="密码" value="" id="LoginPass"/><br>
             </div>
         </form>
-        <button class="btn MySmBtn" id="LR_Register">注册</button>
-        <button class="btn MySmBtn" id="LR_Login">登陆</button>
+        <button class="btn MySmBtn" id="btnRegister">注册</button>
+        <button class="btn MySmBtn" id="btnLogin">登陆</button>
         <br>
     </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#LR_Login").click(function () {
-            var sendMess = "";
-            var url = "__URL__/HDLogin";
-
-            XMLHttpRequest.open("POST", url, true);
-            XMLHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            XMLHttpRequest.onreadystatechange = HDLogin;
-            XMLHttpRequest.send(sendMess);
-        });
-        /** 处理Login */
-        function HDLogin() {
-            if (XMLHttpRequest.readyState == 4) {
-
+        $("#btnLogin").click(function () {
+            var data = new Object();
+            var sendurl = "http://localhost:8080/user/userLogin";
+            data['uid'] = $("#LoginID").val();
+            data['pass'] =  hex_md5($("#LoginPass").val());
+            var resData = requestSend(sendurl, data);
+            if(loadResult(resData.feedback)){
+                swal("恭喜", "登录成功", "success");
             }
-        }
 
+        });
 
-        $("#LR_Register").click(function () {
+        $("#btnRegister").click(function () {
             location.href = "Register.html";
         });
     });
