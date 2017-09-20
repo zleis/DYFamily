@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -71,8 +72,8 @@ public class UserController {
         int feedback = userService.userLogin(paramJson);
         if(feedback == GlobalVariable.REQUEST_SUCCESS){
             HttpSession session = request.getSession();
-            session.setAttribute("uid",((String[]) paramJson.get("uid"))[0]);
-            session.setAttribute("login_con",1);
+            session.setAttribute("uid",((String) paramJson.get("uid")));
+            session.setAttribute("login_con","1");
         }
         resJson.put("feedback",feedback);
         return resJson.toString();
@@ -112,9 +113,21 @@ public class UserController {
      */
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     @ResponseBody
-    public String updateUserInfo(HttpServletRequest request){
+    public String updateUserInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
         JSONObject resJson = new JSONObject();
+
+        // 未登录
+        if(!session.getAttribute("login_con").equals("1")){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+
 
         /**
          * todo
@@ -134,15 +147,47 @@ public class UserController {
      */
     @RequestMapping( value = "/uploadImage", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadImage(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request){
+    public String uploadImage(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        JSONObject resJson = new JSONObject();
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
         HttpSession session = request.getSession();
-        session.setAttribute("uid","2017203133");
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals("1")){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
         if(!multipartFile.isEmpty()){
             String path = "src/main/webapp/resources/static/uploadImage/";
             GlobalFun.fileUpload(path,session.getAttribute("uid") + ".jpg",multipartFile);
         }
         return resJson.toString();
+    }
+
+
+    @RequestMapping( value = "/addNewRecord", method = RequestMethod.POST)
+    @ResponseBody
+    public String addNewRecord(HttpServletRequest request, HttpServletResponse response){
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals("1")){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+
+
+        return resJson.toString();
+
     }
 }

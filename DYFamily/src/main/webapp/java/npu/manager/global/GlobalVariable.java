@@ -13,7 +13,7 @@ public class GlobalVariable {
     public static final int REQUEST_SUCCESS = 10000; // 用户请求正确
     public static final int LOGIN_ERROR = 10001; // 登录失败
     public static final int UPLOAD_FILE_ERROR = 10002; // 文件上传出错
-
+    public static final int NO_USER_LOGIN = 10003; // 用户未登录
 
     /**
      * session 表示的含义

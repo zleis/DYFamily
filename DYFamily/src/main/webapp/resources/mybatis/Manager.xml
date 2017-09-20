@@ -18,9 +18,19 @@
         <result column="u_cogition" property="cognition"/>
         <result column="u_iscomp" property="isComp"/>
     </resultMap>
-
+    
+    <resultMap id="managerMap" type="npu.manager.beans.Manager">
+        <result column="m_id" property="mid"/>
+        <result column="m_pass" property="pass"/>
+        <result column="m_power" property="power"/>
+    </resultMap>
+    
     <select id="getUserByID" resultMap="userMap">
         select * from user where u_id = #{uid}
+    </select>
+    
+    <select id="getManagerByID" resultMap="managerMap">
+        SELECT * from manager where m_id = #{mid}
     </select>
 
 
