@@ -30,7 +30,7 @@ import static com.mangofactory.swagger.paths.RelativeSwaggerPathProvider.ROOT;
 /**
  * Created by  on .
  *
- * @autor ZLei
+ * @autor ZLeis
  * @date 2017/9/16
  * @todo
  */
