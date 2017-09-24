@@ -6,10 +6,11 @@ import org.springframework.http.HttpRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.html.HTMLDocument;
 import java.io.*;
 import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URLEncoder;
+import java.util.*;
 
 /**
  * Created by  on .
@@ -48,14 +49,13 @@ public class GlobalFun {
      * @date 2017/9/19
      * @param request 获取map参数
      * @return java.util.Map<java.lang.String,java.lang.String>
-     * @todo 获取Map对象的参数
+     * @todo HTTP 请求的参数转为Map对象
      */
     public static Map<String, String> getMapParamFromRequest(HttpServletRequest request){
         Map<String, String> resMap = new HashMap<String, String>();
         Map<String, String[]> requestMap = request.getParameterMap();
         try{
             for(Map.Entry<String,String[]> entry : requestMap.entrySet()) {
-//                resJson.put(entry.getKey(), URLDecoder.decode((entry.getValue())[0], "utf-8"));
                 resMap.put(entry.getKey(), URLDecoder.decode((entry.getValue())[0], "utf-8"));
             }
         }catch (Exception e){
@@ -64,7 +64,8 @@ public class GlobalFun {
         return resMap;
     }
 
-        /**
+
+    /**
      * function fileUpload
      * @author ZLei
      * @date 2017/9/17
@@ -72,7 +73,7 @@ public class GlobalFun {
      * @param fileName 文件名称,
      * @param multipartFile 文件流,
      * @return void
-     * @todo
+     * @todo 文件上传
      */
     public static int fileUpload(String path, String fileName, MultipartFile multipartFile){
         try{
@@ -88,4 +89,5 @@ public class GlobalFun {
         }
 
     }
+
 }

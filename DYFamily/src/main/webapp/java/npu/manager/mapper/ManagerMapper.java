@@ -1,7 +1,9 @@
 package npu.manager.mapper;
 
 import npu.manager.beans.Manager;
+import npu.manager.beans.Notice;
 import npu.manager.beans.User;
+import npu.manager.beans.UserNotice;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -34,6 +36,26 @@ public interface ManagerMapper{
      * @todo 通过UID查找管理员信息
      */
     public Manager getManagerByID(@Param(value = "mid") String mid);
+    
+    /**
+     * function getNoticeTitleList
+     * @author ZLei
+     * @date 2017/9/24 
+     * @param num 列表的
+     * @return 返回通告列表
+     * @todo 获取通知列表中的前num个，首先按照是否阅读排序，其次按照时间排序
+     */
+    public UserNotice getNoticeTitleList(@Param(value = "uid") String uid, @Param(value = "start") int start, @Param(value = "itemNum") int num);
+
+    /**
+     * function getNoticeByID
+     * @author ZLei
+     * @date 2017/9/24 
+     * @param id
+     * @return 返回当前公告
+     * @todo 通过ID获取公告
+     */
+    public Notice getNoticeByID(@Param(value = "ID")int id);
 
     public List<User> getUserListByInfo(Map<String, Object> map);
 }
