@@ -55,7 +55,17 @@ public interface ManagerMapper{
      * @return 返回当前公告
      * @todo 通过ID获取公告
      */
-    public Notice getNoticeByID(@Param(value = "ID")int id);
+    public Notice getNoticeByID(@Param(value = "nid")int id);
+    
+    /**
+     * function setNoticeRead
+     * @author ZLei
+     * @date 2017/9/25 
+     * @param uid,nid
+     * @return 
+     * @todo 设置某个用户的公告为已读
+     */
+    public void setNoticeRead(@Param(value = "uid") String uid,@Param(value = "nid") int nid);
 
     public List<User> getUserListByInfo(Map<String, Object> map);
 }

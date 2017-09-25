@@ -66,5 +66,13 @@
     <select id="getNoticeTitleList" resultMap="userNotice">
         SELECT * FROM notice as n, user_notice as un  where n.n_id = un.n_id and u_id = #{uid} order by un_isread, n_time limit #{start},#{itemNum}
     </select>
+    
+    <select id="getNoticeByID" resultMap="noticeMap">
+        SELECT * FROM notice WHERE n_id = #{nid}
+    </select>
+    <!-- 设置某个用户的公告为已读 -->
+    <update id="setNoticeRead">
+        UPDATE user_notice set un_isread = 0 where u_id = #{uid} and n_id = #{nid}
+    </update>
 
 </mapper>

@@ -44,6 +44,17 @@ public interface UserService {
      */
     public int getNoticeByID(JSONObject paramJson, JSONObject resJson);
 
+
+    /**
+     * function setNoticeRead
+     * @author ZLei
+     * @date 2017/9/25 
+     * @param paramJson{"uid":用户id, "nid":公告ID}
+     * @return 
+     * @todo 设置某个用户的公告为已读
+     */
+    public void setNoticeRead(JSONObject paramJson);
+
     /**
      * function userAddNewRecord
      * @author ZLei

@@ -88,7 +88,39 @@ public class UserServiceImp implements UserService {
 
     @Override
     public int getNoticeByID(JSONObject paramJson, JSONObject resJson) {
+        // 判断参数是否充足
+        if(!paramJson.containsKey("nid")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
 
-        return 0;
+        // 提取参数
+        String nidStr = paramJson.getString("nid");
+        String uid = paramJson.getString("uid");
+        int nid = 0;
+        try{
+            nid = Integer.parseInt(nidStr);
+        }catch (Exception e){
+            return GlobalVariable.param_TYPE_ERROR;
+        }
+
+        // 操作
+        Notice notice = managerMapper.getNoticeByID(nid);
+//        System.out.println(notice.toString());
+        notice.setEncoding();
+        resJson.put("notice",notice);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    @Override
+    public void setNoticeRead(JSONObject paramJson) {
+        try{
+            int nid = Integer.parseInt(paramJson.getString("nid"));
+            String uid = paramJson.getString("uid");
+            managerMapper.setNoticeRead(uid, nid);
+        }catch (Exception e){
+            System.out.println(e.fillInStackTrace());
+            System.out.println("setNoticeRead error");
+
+        }
     }
 }

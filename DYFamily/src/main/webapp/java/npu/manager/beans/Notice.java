@@ -169,7 +169,7 @@ public class Notice {
             }
 
             if(this.detail != null){
-                this.detail = URLEncoder.encode(this.subTitle,"utf-8");
+                this.detail = URLEncoder.encode(this.detail,"utf-8");
             }
 
         }catch (Exception e){

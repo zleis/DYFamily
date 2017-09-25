@@ -1,4 +1,4 @@
-﻿package npu.manager.controller;
+package npu.manager.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import npu.manager.global.GlobalFun;
@@ -138,17 +138,19 @@ public class UserController {
         return resJson.toString();
     }
 
-
-
-
-
-
-
-    /*********--------------完成中----------------------***************/
-
+    /**
+     * function getNoticeByID
+     * @author ZLei
+     * @date 2017/9/25
+     * @param request, response
+     *        request:{"nid":公告ID}
+     * @return java.lang.String
+     * @todo 获取某个公告，并设置为已读
+     */
     @RequestMapping( value = "/getNoticeByID", method = RequestMethod.POST)
     @ResponseBody
     public String getNoticeByID(HttpServletRequest request, HttpServletResponse response){
+
         //设置AJAX跨域访问
         response.addHeader("Access-Control-Allow-Origin","*");
 
@@ -160,13 +162,21 @@ public class UserController {
             return resJson.toString();
         }
 
-
         JSONObject paramJson = GlobalFun.getParamFromRequest(request);
-
+        paramJson.put("uid",session.getAttribute("uid"));
         int feedback = userService.getNoticeByID(paramJson, resJson);
 
+        userService.setNoticeRead(paramJson);
+        resJson.put("feedback",feedback);
         return resJson.toString();
     }
+
+
+
+
+
+    /*********--------------完成中----------------------***************/
+
 
 
 
