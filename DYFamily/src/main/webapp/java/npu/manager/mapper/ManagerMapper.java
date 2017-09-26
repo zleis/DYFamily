@@ -1,9 +1,6 @@
 package npu.manager.mapper;
 
-import npu.manager.beans.Manager;
-import npu.manager.beans.Notice;
-import npu.manager.beans.User;
-import npu.manager.beans.UserNotice;
+import npu.manager.beans.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -62,10 +59,18 @@ public interface ManagerMapper{
      * @author ZLei
      * @date 2017/9/25 
      * @param uid,nid
-     * @return 
      * @todo 设置某个用户的公告为已读
      */
     public void setNoticeRead(@Param(value = "uid") String uid,@Param(value = "nid") int nid);
+    
+    /**
+     * function addAdvice
+     * @author ZLei
+     * @date 2017/9/25
+     * @todo 添加意见
+     */
+    public void addAdvice(Advice advice);
+
 
     public List<User> getUserListByInfo(Map<String, Object> map);
 }

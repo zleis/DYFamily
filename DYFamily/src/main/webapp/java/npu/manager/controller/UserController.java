@@ -171,12 +171,40 @@ public class UserController {
         return resJson.toString();
     }
 
+    /**
+     * function giveAdvice
+     * @author ZLei
+     * @date 2017/9/25
+     * @param request{"title":意见标题, "advice":消息内容}
+     * @return
+     * @todo 用户提供意见
+     */
+    @RequestMapping( value = "/giveAdvice", method = RequestMethod.POST)
+    @ResponseBody
+    public String giveAdvice(HttpServletRequest request, HttpServletResponse response){
 
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals("1")){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        paramJson.put("uid",session.getAttribute("uid"));
+//        paramJson.put("uid",GlobalVariable.TEST_UID);
+        int feedback = userService.giveAdvice(paramJson);
+        resJson.put("feedback",feedback);
+        return resJson.toString();
+    }
 
 
 
     /*********--------------完成中----------------------***************/
-
 
 
 

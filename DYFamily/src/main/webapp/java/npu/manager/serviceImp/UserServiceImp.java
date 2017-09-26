@@ -3,6 +3,7 @@ package npu.manager.serviceImp;
 
 import com.alibaba.fastjson.JSONObject;
 import jdk.nashorn.internal.objects.Global;
+import npu.manager.beans.Advice;
 import npu.manager.beans.Notice;
 import npu.manager.beans.User;
 import npu.manager.beans.UserNotice;
@@ -12,6 +13,8 @@ import npu.manager.service.UserService;
 import npu.manager.mapper.ManagerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * Created by  on .
@@ -122,5 +125,25 @@ public class UserServiceImp implements UserService {
             System.out.println("setNoticeRead error");
 
         }
+    }
+
+    @Override
+    public int giveAdvice(JSONObject paramJson) {
+
+        // 判断参数是否完整
+        if(!paramJson.containsKey("title") || !paramJson.containsKey("advice")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+
+        // 获取参数
+        String uid = paramJson.getString("uid"); // 用户ID
+        String title = paramJson.getString("title"); // 意见大标题
+        String detail = paramJson.getString("detail"); // 意见内容
+        Date createTime = new Date();
+        User user = managerMapper.getUserByID(uid);
+        String bid = user.getBid();
+        Advice advice = new Advice(uid,bid, createTime,title,detail);
+        managerMapper.addAdvice(advice);
+        return GlobalVariable.REQUEST_SUCCESS;
     }
 }

@@ -55,6 +55,14 @@ public interface UserService {
      */
     public void setNoticeRead(JSONObject paramJson);
 
+
+
+    /***********--------------完成中-------------------------*/
+
+    public int giveAdvice(JSONObject paramJson);
+
+    /***********--------------未完成-------------------------*/
+
     /**
      * function userAddNewRecord
      * @author ZLei
