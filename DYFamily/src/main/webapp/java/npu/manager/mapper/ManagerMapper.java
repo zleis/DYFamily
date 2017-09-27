@@ -70,7 +70,14 @@ public interface ManagerMapper{
      * @todo 添加意见
      */
     public void addAdvice(Advice advice);
-
+    
+    /**
+     * function getNoticeLen
+     * @author ZLei
+     * @date 2017/9/27
+     * @todo 获取公告的数量
+     */
+    public int getNoticeLen(@Param(value = "uid") String uid);
 
     public List<User> getUserListByInfo(Map<String, Object> map);
 }

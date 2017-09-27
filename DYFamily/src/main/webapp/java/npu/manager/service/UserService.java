@@ -54,12 +54,18 @@ public interface UserService {
      * @todo 设置某个用户的公告为已读
      */
     public void setNoticeRead(JSONObject paramJson);
-
-
+    
+    /**
+     * function giveAdvice
+     * @author ZLei
+     * @date 2017/9/26
+     * @todo 用户提交意见
+     */
+    public int giveAdvice(JSONObject paramJson);
 
     /***********--------------完成中-------------------------*/
 
-    public int giveAdvice(JSONObject paramJson);
+
 
     /***********--------------未完成-------------------------*/
 

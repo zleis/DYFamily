@@ -18,7 +18,7 @@
 
 body{
     /*background: url("../Image/NWPU.jpg") fixed no-repeat center ;*/
-    /*background-image: url("../Image/NWPU.jpg");*/
+    /*background-images: url("../Image/NWPU.jpg");*/
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;

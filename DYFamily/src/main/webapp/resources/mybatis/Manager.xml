@@ -35,7 +35,7 @@
         <result column="n_title" property="title" />
         <result column="n_subtitle" property="subTitle" />
         <result column="n_read_time" property="readTimes" />
-        <result column="n_time" property="readTimes" />
+        <result column="n_time" property="createTimes" />
         <result column="n_detail" property="detail" />
     </resultMap>
 
@@ -64,7 +64,7 @@
 
     <!-- 获得通知列表 -->
     <select id="getNoticeTitleList" resultMap="userNotice">
-        SELECT * FROM notice as n, user_notice as un  where n.n_id = un.n_id and u_id = #{uid} order by un_isread, n_time limit #{start},#{itemNum}
+        SELECT * FROM notice as n, user_notice as un  where n.n_id = un.n_id and u_id = #{uid} order by un_isread DESC, n_time limit #{start},#{itemNum}
     </select>
     
     <select id="getNoticeByID" resultMap="noticeMap">
@@ -101,5 +101,9 @@
             <if test="detail != null">#{detail} ,</if>
         </trim>
     </insert>
+
+    <select id="getNoticeLen" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user_notice WHERE u_id = #{uid}
+    </select>
 
 </mapper>

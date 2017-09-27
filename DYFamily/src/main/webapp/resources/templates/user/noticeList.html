@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<title></title>
+<meta name="renderer" content="webkit"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
+<meta name="viewport"
+      content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"></meta>
+
+<link rel="stylesheet" href="/css/xadmin.css"></link>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="/js/xadmin.js"></script>
+<!--<script type="text/javascript" src="/js/sweet-alert.min.js" ></script>-->
+<script type="text/javascript" src="/js/md5.js"></script>
+<script type="text/javascript" src="/js/myjs.js"></script>
+<!--[if lt IE 9]>
+
+<![endif]-->
+</head>
+
+<body>
+    <div class="x-nav">
+        <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a>
+                <cite>公告列表</cite>
+            </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>标题</th>
+                <th>时间</th>
+                <th>浏览量</th>
+                <th>是否已读</th>
+            </tr>
+        </thead>
+        <tbody id = "noticeList">
+        </tbody>
+    </table>
+    <div class="page">
+        <div id = "pageList">
+
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+
+    //<![CDATA[
+    var pageNum = [[${pageNum}]];
+    function readNotice(id) {
+        location.href = "./noticeItem?nid="+id;
+    }
+    function getPage(page){
+        location.href = "./noticeList?pageNum="+page;
+    }
+    $(document).ready(function () {
+        var pageLen = 20;
+
+        function loadTable(pNode,pDate){
+            var len = pDate.length;
+            var table = "";
+            for(var index = 0; index < len; index++)
+            {
+                var row = "";
+                row += "<tr>";
+                row += "<td>" + (index+1) + "</td>";
+                row += "<td ><a onclick='readNotice(" + pDate[index].nid + ")' href='#'>" + decodeURI(pDate[index].title) + "</a></td>";
+                row += "<td>" + format(pDate[index].createTimes) + "</td>";
+                row += "<td>" + decodeURI(pDate[index].readTimes) + "</td>";
+                row += "<td>" + isRead(pDate[index].isRead) + "</td>";
+                row += "</tr>";
+                table += row;
+            }
+            pNode.children('tr').remove();
+            pNode.append(table);
+        }
+
+
+        function loadData(start,isgetLen,pageNum){
+            var data = new Object();
+            var sendurl = "http://localhost:8080/user/noticeTitleList";
+            data["limit"] = pageLen;
+            data["itemNum"] = start;
+            data["isGetLen"] =isgetLen;
+            var resData = requestSend(sendurl, data);
+            if(loadResult(resData.feedback)){
+                loadTable($("#noticeList"),resData.noticeList.noticeList);
+                var pageList = "";
+                for( var i = 0; i < resData.noticeLen/pageLen; i++){
+                    if( i != (pageNum-1) ){
+                        pageList += "<a class='num' href='#' onclick='getPage(" + (i+1) + ")'>" + (i+1) + "</a>";
+                    }else{
+                        pageList += "<span class='current' onclick='getPage(" + (i+1) + ")'>" + (i+1) + "</span>";
+                    }
+
+                }
+                $("#pageList").children('a').remove();
+                $("#pageList").children('span').remove();
+                $("#pageList").append(pageList);
+            }
+        }
+
+        loadData((pageNum-1) * pageLen,1,pageNum);
+    });
+    //]]>
+</script>
+</body>
+
+</html>

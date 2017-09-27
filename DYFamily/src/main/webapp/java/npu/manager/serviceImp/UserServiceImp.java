@@ -84,6 +84,10 @@ public class UserServiceImp implements UserService {
         UserNotice userNotice = managerMapper.getNoticeTitleList(uid, itemNum, limit);
         userNotice.setEncoding(); // 设置编码
         resJson.put("noticeList",userNotice);
+        if(paramJson.containsKey("isGetLen") && paramJson.getString("isGetLen").equals("1")){
+            resJson.put("noticeLen", managerMapper.getNoticeLen(uid));
+        }
+
         System.out.println(((Notice) userNotice.getNoticeList().get(0)).toString());
 
         return GlobalVariable.REQUEST_SUCCESS;
