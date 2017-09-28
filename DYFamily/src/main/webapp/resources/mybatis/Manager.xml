@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "npu.manager.mapper.ManagerMapper">
     <!-- 查询数据库的所有操作 注意分类 -->
+
+    <!-- User 数据库和Map-->
     <resultMap id="userMap" type="npu.manager.beans.User">
         <result column="u_id" property="uid"/>
         <result column="u_pass" property="pass"/>
@@ -18,20 +20,90 @@
         <result column="u_cogition" property="cognition"/>
         <result column="u_iscomp" property="isComp"/>
     </resultMap>
-    
+
+    <!-- Manager Map -->
     <resultMap id="managerMap" type="npu.manager.beans.Manager">
         <result column="m_id" property="mid"/>
         <result column="m_pass" property="pass"/>
         <result column="m_power" property="power"/>
     </resultMap>
-    
+
+    <!-- Notice Map -->
+    <resultMap id="noticeMap" type="npu.manager.beans.Notice">
+        <result column="n_id" property="nid" />
+        <result column="n_type" property="nType" />
+        <result column="n_title" property="title" />
+        <result column="n_subtitle" property="subTitle" />
+        <result column="n_read_time" property="readTimes" />
+        <result column="n_time" property="createTimes" />
+        <result column="n_detail" property="detail" />
+    </resultMap>
+
+    <resultMap id="userNotice" type="npu.manager.beans.UserNotice">
+        <result column="u_id" property="uid" />
+        <collection property="noticeList" ofType="npu.manager.beans.Notice">
+            <result column="n_id" property="nid" />
+            <result column="n_type" property="nType" />
+            <result column="n_title" property="title" />
+            <result column="n_subtitle" property="subTitle" />
+            <result column="n_read_time" property="readTimes" />
+            <result column="n_time" property="createTimes" />
+            <result column="un_isread" property="isRead" />
+        </collection>
+    </resultMap>
+
+    <!-- 通过ID获取User  -->
     <select id="getUserByID" resultMap="userMap">
         select * from user where u_id = #{uid}
     </select>
-    
+
+    <!-- 通过ID获得Manger -->
     <select id="getManagerByID" resultMap="managerMap">
         SELECT * from manager where m_id = #{mid}
     </select>
 
+    <!-- 获得通知列表 -->
+    <select id="getNoticeTitleList" resultMap="userNotice">
+        SELECT * FROM notice as n, user_notice as un  where n.n_id = un.n_id and u_id = #{uid} order by un_isread DESC, n_time limit #{start},#{itemNum}
+    </select>
+    
+    <select id="getNoticeByID" resultMap="noticeMap">
+        SELECT * FROM notice WHERE n_id = #{nid}
+    </select>
+
+    <!-- 设置某个用户的公告为已读 -->
+    <update id="setNoticeRead">
+        UPDATE user_notice set un_isread = 0 where u_id = #{uid} and n_id = #{nid}
+    </update>
+
+    <!--添加建议-->
+    <insert id="addAdvice" parameterType="npu.manager.beans.Advice">
+        INSERT into advice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="uid != null">u_id,</if>
+            <if test="bid != null">b_id,</if>
+            <if test="mid != null">m_id,</if>
+            <if test="createTime != null">a_createTime,</if>
+            <if test="type != null">a_type,</if>
+            <if test="reid != null">a_reid,</if>
+            <if test="title != null">a_title,</if>
+            <if test="detail != null">a_detail ,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">#{uid, jdbcType=VARCHAR},</if>
+            <if test="bid != null">#{bid, jdbcType=VARCHAR},</if>
+            <if test="mid != null">#{mid, jdbcType=VARCHAR},</if>
+            <if test="createTime != null">#{createTime, jdbcType=TIMESTAMP},</if>
+            <if test="type != null">#{type},</if>
+            <if test="reid != null">#{reid},</if>
+            <if test="title != null">#{title},</if>
+            <if test="detail != null">#{detail} ,</if>
+        </trim>
+    </insert>
+
+    <select id="getNoticeLen" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user_notice WHERE u_id = #{uid}
+    </select>
 
 </mapper>

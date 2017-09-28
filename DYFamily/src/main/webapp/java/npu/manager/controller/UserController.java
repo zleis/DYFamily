@@ -44,13 +44,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/hello")
-    public String Test(Model model){
-        model.addAttribute("name","test");
-        return "hello";
-    }
-
-
     /**
      * function userLogin
      * @author ZLei
@@ -80,6 +73,148 @@ public class UserController {
     }
 
     /**
+     * function uploadImage
+     * @author ZLei
+     * @date 2017/9/17
+     * @param multipartFile, request
+     * @return java.lang.String
+     * @todo 用户上传照片
+     */
+    @RequestMapping( value = "/uploadImage", method = RequestMethod.POST)
+    @ResponseBody
+    public String uploadImage(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals("1")){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        if(!multipartFile.isEmpty()){
+            String path = "src/main/webapp/resources/static/uploadImage/";
+            GlobalFun.fileUpload(path,session.getAttribute("uid") + ".jpg",multipartFile);
+        }
+        return resJson.toString();
+    }
+
+    /**
+     * function getNotictTitleList
+     * @author ZLei
+     * @date 2017/9/24
+     * @param request, response
+     * request: {"limit":"每页的个数"，"itemNum"：起始位置}
+     * @return java.lang.String
+     * @todo
+     */
+    @RequestMapping( value = "/noticeTitleList", method = RequestMethod.POST)
+    @ResponseBody
+    public String getNotictTitleList(HttpServletRequest request, HttpServletResponse response){
+
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals("1")){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        paramJson.put("uid",session.getAttribute("uid"));
+        int feedback = userService.getNoticeTitleList(paramJson,resJson);
+
+        resJson.put("feedback",feedback);
+        System.out.println(resJson.toString());
+        return resJson.toString();
+    }
+
+    /**
+     * function getNoticeByID
+     * @author ZLei
+     * @date 2017/9/25
+     * @param request, response
+     *        request:{"nid":公告ID}
+     * @return java.lang.String
+     * @todo 获取某个公告，并设置为已读
+     */
+    @RequestMapping( value = "/getNoticeByID", method = RequestMethod.POST)
+    @ResponseBody
+    public String getNoticeByID(HttpServletRequest request, HttpServletResponse response){
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals("1")){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        paramJson.put("uid",session.getAttribute("uid"));
+        int feedback = userService.getNoticeByID(paramJson, resJson);
+
+        userService.setNoticeRead(paramJson);
+        resJson.put("feedback",feedback);
+        return resJson.toString();
+    }
+
+    /**
+     * function giveAdvice
+     * @author ZLei
+     * @date 2017/9/25
+     * @param request{"title":意见标题, "advice":消息内容}
+     * @return
+     * @todo 用户提供意见
+     */
+    @RequestMapping( value = "/giveAdvice", method = RequestMethod.POST)
+    @ResponseBody
+    public String giveAdvice(HttpServletRequest request, HttpServletResponse response){
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals("1")){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        paramJson.put("uid",session.getAttribute("uid"));
+//        paramJson.put("uid",GlobalVariable.TEST_UID);
+        int feedback = userService.giveAdvice(paramJson);
+        resJson.put("feedback",feedback);
+        return resJson.toString();
+    }
+
+
+
+    /*********--------------完成中----------------------***************/
+
+
+
+    /*********--------------未完成----------------------***************/
+
+
+
+
+
+    /**
      * function userRegister
      * @author ZLei
      * @date 2017/9/16
@@ -97,7 +232,7 @@ public class UserController {
         JSONObject resJson = new JSONObject();
 
         /**
-         * todos
+         * todo
          */
 
         return resJson.toString();
@@ -137,36 +272,6 @@ public class UserController {
 
     }
 
-    /**
-     * function uploadImage
-     * @author ZLei
-     * @date 2017/9/17
-     * @param multipartFile, request
-     * @return java.lang.String
-     * @todo 用户上传照片
-     */
-    @RequestMapping( value = "/uploadImage", method = RequestMethod.POST)
-    @ResponseBody
-    public String uploadImage(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-
-        //设置AJAX跨域访问
-        response.addHeader("Access-Control-Allow-Origin","*");
-
-        HttpSession session = request.getSession();
-        JSONObject resJson = new JSONObject();
-
-        if(!session.getAttribute("login_con").equals("1")){
-            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
-            return resJson.toString();
-        }
-
-        if(!multipartFile.isEmpty()){
-            String path = "src/main/webapp/resources/static/uploadImage/";
-            GlobalFun.fileUpload(path,session.getAttribute("uid") + ".jpg",multipartFile);
-        }
-        return resJson.toString();
-    }
 
 
     @RequestMapping( value = "/addNewRecord", method = RequestMethod.POST)
@@ -186,8 +291,9 @@ public class UserController {
 
         JSONObject paramJson = GlobalFun.getParamFromRequest(request);
 
-
         return resJson.toString();
 
     }
+
+
 }

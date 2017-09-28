@@ -60,7 +60,7 @@ public class AdminController {
         return resJson.toString();
     }
 
-    @RequestMapping(value = "/managerLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/mamagerLookUpUser", method = RequestMethod.POST)
     @ResponseBody
     public String managerLookUpUser(HttpServletRequest request, HttpServletResponse response){
 

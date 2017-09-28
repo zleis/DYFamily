@@ -7,6 +7,7 @@ import npu.manager.global.GlobalVariable;
 import npu.manager.mapper.ManagerMapper;
 import npu.manager.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import java.util.Map;
  * @date 2017/9/19
  * @todo 管理员服务
  */
+@Service
 public class AdminServiceImp implements AdminService {
 
     @Autowired

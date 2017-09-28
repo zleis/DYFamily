@@ -36,6 +36,26 @@ function requestSend(sendurl, data){
 function alerterror(Mess){
     swal("警告", Mess, "error");
 }
+function add0(m){return m<10?'0'+m:m }
+function format(shijianchuo)
+{
+    //shijianchuo是整数，否则要parseInt转换
+    var time = new Date(shijianchuo);
+    var y = time.getFullYear();
+    var m = time.getMonth()+1;
+    var d = time.getDate();
+    var h = time.getHours();
+    var mm = time.getMinutes();
+    return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm);
+}
+function isRead(isread){
+    if(isread == 1){
+        return "未读";
+    }else{
+        return "已读";
+    }
+}
+
 
 /**
  * function
@@ -54,6 +74,9 @@ function loadResult(feedback) {
         return false;
     }
 }
+
+
+
 
 /**
  * function
