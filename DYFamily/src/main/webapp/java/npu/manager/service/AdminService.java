@@ -29,6 +29,8 @@ public interface AdminService {
 
     public int getNoticeByID(JSONObject paramJson,JSONObject resJson);
 
+    public int addNotice(JSONObject paramJson,JSONObject resJson);
+
     /**
      * function adminLookUpUser
      * @author ZLei

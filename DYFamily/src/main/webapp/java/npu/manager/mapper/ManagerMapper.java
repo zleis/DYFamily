@@ -77,7 +77,7 @@ public interface ManagerMapper{
      * @date 2017/9/27
      * @todo 获取公告的数量
      */
-    public int getNoticeLen(@Param(value = "uid") String uid);
+    public int getNoticeLen();
 
 
     /**
@@ -116,14 +116,11 @@ public interface ManagerMapper{
      */
     public List<Notice> getNoticeList();
 
-    /**
-     * function getNoticeLen
-     * @author ZLei
-     * @date 2017/9/30
-     * @todo 获取公告个数
-     */
-    public int getAdminNoticeLen();
+    public void addNotice(Notice notice);
 
+    public UserNotice getUserNoticeList(@Param(value = "uid") String uid, @Param(value = "nid") int nid);
+
+    public void insertReadNotice(@Param(value = "uid") String uid, @Param(value = "nid")int nid);
 
     public List<User> getUserListByInfo(Map<String, Object> map);
 

@@ -9,7 +9,7 @@
         },
         "addNotice": {
           "name": "添加公告",
-          "url": "/adminView/addNotice"
+          "url": "addNotice"
         },
         "modNotice": {
           "name": "修改公告",

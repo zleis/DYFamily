@@ -90,6 +90,28 @@ public class AdminController {
         return resJson.toString();
     }
 
+    @RequestMapping( value = "/addNotice", method = RequestMethod.POST)
+    @ResponseBody
+    public String addNotice(HttpServletRequest request, HttpServletResponse response){
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        int feedback = adminService.addNotice(paramJson, resJson);
+        resJson.put("feedback",feedback);
+        return resJson.toString();
+    }
+
+
+
     @RequestMapping(value = "/mamagerLookUpUser", method = RequestMethod.POST)
     @ResponseBody
     public String managerLookUpUser(HttpServletRequest request, HttpServletResponse response){

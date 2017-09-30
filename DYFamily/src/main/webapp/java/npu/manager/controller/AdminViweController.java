@@ -103,4 +103,12 @@ public class AdminViweController {
         model.addObject("nid",paramJson.getString("nid"));
         return model;
     }
+
+    @RequestMapping(value = "/addNotice", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView addNotice(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("admin/addNotice");
+        return model;
+    }
 }

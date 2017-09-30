@@ -10,6 +10,7 @@ import npu.manager.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +71,26 @@ public class AdminServiceImp implements AdminService {
 
         notice.setEncoding();
         resJson.put("notice",notice);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+
+    @Override
+    public int addNotice(JSONObject paramJson, JSONObject resJson) {
+        // 判断参数是否完整
+        if(!paramJson.containsKey("title") || !paramJson.containsKey("detail")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        String title = paramJson.getString("title"); // 意见大标题
+        String detail = paramJson.getString("detail"); // 意见内容
+        Date createTime = new Date();
+        int readTime = 0;
+        Notice notice = new Notice();
+        notice.setTitle(title);
+        notice.setDetail(detail);
+        notice.setCreateTimes(createTime);
+        notice.setReadTimes(readTime);
+        managerMapper.addNotice(notice);
         return GlobalVariable.REQUEST_SUCCESS;
     }
 

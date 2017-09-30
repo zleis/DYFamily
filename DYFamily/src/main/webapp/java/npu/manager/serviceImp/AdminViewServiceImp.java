@@ -42,7 +42,7 @@ public class AdminViewServiceImp implements AdminViewService{
             notice.setEncoding();
         }
         resJson.put("noticeList",noticeList);
-        resJson.put("noticeLen", managerMapper.getAdminNoticeLen());
+        resJson.put("noticeLen", managerMapper.getNoticeLen());
         return resJson;
     }
 

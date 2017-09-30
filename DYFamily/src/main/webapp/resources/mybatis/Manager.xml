@@ -40,7 +40,7 @@
     </resultMap>
 
     <resultMap id="userNotice" type="npu.manager.beans.UserNotice">
-        <result column="u_id" property="uid" />
+
         <collection property="noticeList" ofType="npu.manager.beans.Notice">
             <result column="n_id" property="nid" />
             <result column="n_type" property="nType" />
@@ -58,6 +58,7 @@
         <result column="b_detail" property="bDetail" />
     </resultMap>
 
+
     <!-- 通过ID获取User  -->
     <select id="getUserByID" resultMap="userMap">
         select * from user where u_id = #{uid}
@@ -70,7 +71,10 @@
 
     <!-- 获得通知列表 -->
     <select id="getNoticeTitleList" resultMap="userNotice">
-        SELECT * FROM notice as n, user_notice as un  where n.n_id = un.n_id and u_id = #{uid} order by un_isread DESC, n_time limit #{start},#{itemNum}
+    SELECT n.*,un.* FROM notice as n left JOIN
+    (SELECT * from user_notice WHERE u_id = #{uid}) as un on n.n_id = un.n_id
+    order by  case when un_isread is null then 1 else un_isread end DESC,
+    n_time limit #{start},#{itemNum}
     </select>
     
     <select id="getNoticeByID" resultMap="noticeMap">
@@ -109,7 +113,7 @@
     </insert>
 
     <select id="getNoticeLen" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM user_notice WHERE u_id = #{uid}
+        SELECT count(*) from notice
     </select>
 
     <insert id="addUser" >
@@ -130,9 +134,35 @@
         SELECT * from notice
     </select>
 
-    <select id="getAdminNoticeLen" resultType="java.lang.Integer">
-        SELECT count(*) from notice
+    
+    <insert id="addNotice" parameterType="npu.manager.beans.Notice">
+        INSERT into notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="nType != null">n_type,</if>
+            <if test="title != null">n_title,</if>
+            <if test="subTitle != null">n_subtitle,</if>
+            <if test="readTimes != null">n_read_time,</if>
+            <if test="createTimes != null">n_time,</if>
+            <if test="detail != null">n_detail,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="nType != null">#{nType},</if>
+            <if test="title != null">#{title},</if>
+            <if test="subTitle != null">#{subTitle},</if>
+            <if test="readTimes != null">#{readTimes},</if>
+            <if test="createTimes != null">#{createTimes},</if>
+            <if test="detail != null">#{detail},</if>
+        </trim>
+    </insert>
+    
+    <select id="getUserNoticeList" resultMap="userNotice">
+        SELECT * FROM user_notice WHERE uid = #{uid} and nid = #{nid}
     </select>
+
+    <insert id="insertReadNotice">
+        INSERT  into user_notice VALUES (#{uid}, #{nid}, 0)
+    </insert>
 
 
 
