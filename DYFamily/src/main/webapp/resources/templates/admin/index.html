@@ -23,7 +23,7 @@
 <body>
 <!-- 顶部开始 -->
 <div class="container">
-    <div class="logo"><a href="./index.html">党员之家</a></div>
+    <div class="logo"><a href="./index.html">党员之家后台管理</a></div>
     <div class="left_open">
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
     </div>
@@ -46,35 +46,29 @@
 <div class="left-nav">
     <div id="side-nav">
         <ul id="nav">
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>功能列表</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="noticeList?pageNum=1">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>公告通知</cite>
+            <tr th:each="key : ${menu.keySet()}">
+                <li>
+                    <!--<td class="am-text-center">*</td>-->
+                    <a href="javascript:;">
+                        <i class="iconfont">&#xe6b8;</i>
+                        <cite th:text="${menu.getJSONObject(key).getString('name')}">1234567</cite>
+                        <i class="iconfont nav_right">&#xe697;</i>
+                    </a>
+                    <ul class="sub-menu">
+                        <tr th:each="subMenu : ${menu.getJSONObject(key).getJSONObject('childMenu').keySet()}">
+                        <!--<p th:text = "${subMenu}"></p>-->
+                        <!--<p th:text = "${menu.getJSONObject(key).getJSONObject('childMenu').getJSONObject(subMenu).getString('url')}"></p>-->
+                            <li>
+                                <a th:attr="_href=${menu.getJSONObject(key).getJSONObject('childMenu').getJSONObject(subMenu).getString('url')}">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite th:text="${menu.getJSONObject(key).getJSONObject('childMenu').getJSONObject(subMenu).getString('name')}"></cite>
+                                </a>
+                            </li>
+                        </tr>
+                    </ul>
+                </li>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href=".html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>入党历程</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="advice">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>宝贵意见</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
+            </tr>
         </ul>
     </div>
 </div>
@@ -86,7 +80,7 @@
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='/userView/noticeList?pageNum=1' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='listNotice' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
         </div>
     </div>

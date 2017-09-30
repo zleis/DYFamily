@@ -41,6 +41,9 @@ public class UserServiceImp implements UserService {
         String uid = (String)paramJson.get("uid");
         String pass = (String)paramJson.get("pass");
         User loginUser  = managerMapper.getUserByID(uid);
+        if(loginUser == null){
+            return GlobalVariable.USER_IS_NULL;
+        }
         if(!loginUser.getPass().equals(pass)){
             return GlobalVariable.LOGIN_ERROR;
         }
@@ -82,6 +85,9 @@ public class UserServiceImp implements UserService {
 
         // 操作
         UserNotice userNotice = managerMapper.getNoticeTitleList(uid, itemNum, limit);
+        if(userNotice == null){
+            return GlobalVariable.GET_NOTICE_ERROR;
+        }
         userNotice.setEncoding(); // 设置编码
         resJson.put("noticeList",userNotice);
         if(paramJson.containsKey("isGetLen") && paramJson.getString("isGetLen").equals("1")){
@@ -112,7 +118,9 @@ public class UserServiceImp implements UserService {
 
         // 操作
         Notice notice = managerMapper.getNoticeByID(nid);
-//        System.out.println(notice.toString());
+        if(notice == null){
+            return GlobalVariable.GET_NOTICE_ERROR;
+        }
         notice.setEncoding();
         resJson.put("notice",notice);
         return GlobalVariable.REQUEST_SUCCESS;

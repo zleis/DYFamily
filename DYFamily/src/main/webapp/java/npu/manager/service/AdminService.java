@@ -1,5 +1,6 @@
 package npu.manager.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ public interface AdminService {
      * @todo 管理员登录
      */
     public int adminLogin(JSONObject paramJson);
+
+    public int getNoticeByID(JSONObject paramJson,JSONObject resJson);
 
     /**
      * function adminLookUpUser

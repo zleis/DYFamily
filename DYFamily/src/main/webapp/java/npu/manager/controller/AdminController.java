@@ -60,6 +60,36 @@ public class AdminController {
         return resJson.toString();
     }
 
+    /**
+     * function getNoticeByID
+     * @author ZLei
+     * @date 2017/9/25
+     * @param request, response
+     *        request:{"nid":公告ID}
+     * @return java.lang.String
+     * @todo 获取某个公告，并设置为已读
+     */
+    @RequestMapping( value = "/getNoticeByID", method = RequestMethod.POST)
+    @ResponseBody
+    public String getNoticeByID(HttpServletRequest request, HttpServletResponse response){
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        int feedback = adminService.getNoticeByID(paramJson, resJson);
+        resJson.put("feedback",feedback);
+        return resJson.toString();
+    }
+
     @RequestMapping(value = "/mamagerLookUpUser", method = RequestMethod.POST)
     @ResponseBody
     public String managerLookUpUser(HttpServletRequest request, HttpServletResponse response){
@@ -78,5 +108,12 @@ public class AdminController {
 
         return resJson.toString();
 
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String test(){
+        JSONObject json = GlobalFun.getMenu(12);
+        return json.toString();
     }
 }

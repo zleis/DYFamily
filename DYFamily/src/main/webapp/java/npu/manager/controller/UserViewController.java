@@ -82,4 +82,6 @@ public class UserViewController {
         model.setViewName("user/advice");
         return model;
     }
+
+
 }

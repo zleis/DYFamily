@@ -51,6 +51,12 @@
             <result column="un_isread" property="isRead" />
         </collection>
     </resultMap>
+    
+    <resultMap id="branchMap" type="npu.manager.beans.Branch">
+        <result column="b_id" property="bid" />
+        <result column="b_type" property="bName" />
+        <result column="b_detail" property="bDetail" />
+    </resultMap>
 
     <!-- 通过ID获取User  -->
     <select id="getUserByID" resultMap="userMap">
@@ -105,5 +111,27 @@
     <select id="getNoticeLen" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM user_notice WHERE u_id = #{uid}
     </select>
+
+
+
+    <!-- *********************  管理员后台 *************************-->
+    <select id="getUserList" resultMap="userMap">
+        SELECT * FROM user
+    </select>
+
+    <select id="getBranchList" resultMap="branchMap">
+        SELECT * FROM branch
+    </select>
+
+    <select id="getNoticeList" resultMap="noticeMap">
+        SELECT * from notice
+    </select>
+
+    <select id="getAdminNoticeLen" resultType="java.lang.Integer">
+        SELECT count(*) from notice
+    </select>
+
+
+
 
 </mapper>
