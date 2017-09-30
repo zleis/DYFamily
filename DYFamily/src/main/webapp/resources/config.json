@@ -1,0 +1,77 @@
+{
+  "1": {
+    "name": "用户信息",
+    "childMenu": {
+      "searchInfo": {
+        "name": "查询用户信息",
+        "url": "searchInfo.php",
+        "remark": "我是备注。。。searchInfo"
+      },
+      "updateInfo": {
+        "name": "修改用户信息",
+        "url": "updateInfo.php",
+        "remark": "我是备注。。。updateInfo"
+      },
+      "PlayerRename": {
+        "name": "玩家修改名称",
+        "url": "PlayerRename.php",
+        "remark": "我是备注。。。PlayerRename"
+      },
+      "PlayerPayment": {
+        "name": "玩家充值记录",
+        "url": "PlayerPayment.php",
+        "remark": "我是备注。。。PlayerPayment"
+      },
+      "PlayerAction": {
+        "name": "玩家日志",
+        "url": "PlayerAction.php",
+        "remark": "我是备注。。。PlayerAction"
+      },
+      "PlayerChatBanned": {
+        "name": "玩家禁言",
+        "url": "PlayerChatBanned.php",
+        "remark": "我是备注。。。PlayerChatBanned"
+      },
+      "ChatBannedList": {
+        "name": "禁言列表",
+        "url": "ChatBannedList.php",
+        "remark": "我是备注。。。ChatBannedList"
+      },
+      "PlayerLoginBanned": {
+        "name": "玩家封号",
+        "url": "PlayerLoginBanned.php",
+        "remark": "我是备注。。。PlayerLoginBanned"
+      },
+      "LoginBannedList": {
+        "name": "封号列表",
+        "url": "LoginBannedList.php",
+        "remark": "我是备注。。。LoginBannedList"
+      },
+      "PlayerDailyPaper": {
+        "name": "玩家日报",
+        "url": "PlayerDailyPaper.php",
+        "remark": "我是备注。。。PlayerDailyPaper"
+      },
+      "SetGameMaster": {
+        "name": "设置GM管理",
+        "url": "SetGameMaster.php",
+        "remark": "我是备注。。。SetGameMaster"
+      },
+      "1": {
+        "name": "1",
+        "url": "SetGameMaster.php",
+        "remark": "我是备注。。。SetGameMaster"
+      },
+      "2": {
+        "name": "2",
+        "url": "SetGameMaster.php",
+        "remark": "我是备注。。。SetGameMaster"
+      },
+      "3": {
+        "name": "3",
+        "url": "SetGameMaster.php",
+        "remark": "我是备注。。。SetGameMaster"
+      }
+    }
+  }
+}

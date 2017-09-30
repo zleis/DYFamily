@@ -79,6 +79,7 @@ public interface ManagerMapper{
      */
     public int getNoticeLen(@Param(value = "uid") String uid);
 
+
     /**
      * function addUser
      * @author Mike
@@ -87,5 +88,50 @@ public interface ManagerMapper{
      */
     public void addUser(@Param(value = "uid") String uid, @Param(value = "pass") String pass);
 
+
+
+
+    /*--------------------------- 管理员 -----------------------------*/
+    /**
+     * function getUserList
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 获取用户列表
+     */
+    public List<User> getUserList();
+
+    /**
+     * function getBranchList
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 获取支部列表
+     */
+    public List<Branch> getBranchList();
+
+    /**
+     * function
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 获取公告列表
+     */
+    public List<Notice> getNoticeList();
+
+    /**
+     * function getNoticeLen
+     * @author ZLei
+     * @date 2017/9/30
+     * @todo 获取公告个数
+     */
+    public int getAdminNoticeLen();
+
+
     public List<User> getUserListByInfo(Map<String, Object> map);
+
+
+
+
+
+
+
+
 }

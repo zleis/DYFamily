@@ -1,0 +1,80 @@
+{
+  "1": {
+    "1":{
+      "name": "公告管理",
+      "childMenu":{
+        "listNotice": {
+          "name": "公告列表",
+          "url": "listNotice"
+        },
+        "addNotice": {
+          "name": "添加公告",
+          "url": "/adminView/addNotice"
+        },
+        "modNotice": {
+          "name": "修改公告",
+          "url": "/adminView/modNotice"
+        },
+        "delNotice": {
+          "name": "删除公告",
+          "url": "/adminView/delNotice"
+        }
+      }
+    },
+    "2":{
+      "name": "用户管理",
+      "childMenu":{
+        "listUser": {
+          "name": "用户列表",
+          "url": "/adminView/adminLogin"
+        },
+        "delUser": {
+          "name": "删除用户",
+          "url": "/adminView/adminLogin"
+        }
+      }
+    },
+    "3":{
+      "name": "支部管理",
+      "childMenu":{
+        "listBranch": {
+          "name": "支部列表",
+          "url": "/adminView/adminLogin"
+        },
+        "addBranch": {
+          "name": "添加支部",
+          "url": "/adminView/adminLogin"
+        },
+        "modBranch": {
+          "name": "修改支部",
+          "url": "/adminView/adminLogin"
+        },
+        "delBranch": {
+          "name": "删除支部",
+          "url": "/adminView/adminLogin"
+        }
+      }
+    },
+    "4":{
+      "name": "生活记录管理",
+      "childMenu":{
+        "listBranch": {
+          "name": "记录列表",
+          "url": "/adminView/adminLogin"
+        },
+        "addBranch": {
+          "name": "添加记录",
+          "url": "/adminView/adminLogin"
+        },
+        "modBranch": {
+          "name": "修改记录",
+          "url": "/adminView/adminLogin"
+        },
+        "delBranch": {
+          "name": "删除记录",
+          "url": "/adminView/adminLogin"
+        }
+      }
+    }
+  }
+}

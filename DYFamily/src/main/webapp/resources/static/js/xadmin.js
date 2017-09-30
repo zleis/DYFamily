@@ -107,6 +107,7 @@ $(function () {
         }else{
 
             var url = $(this).children('a').attr('_href');
+            console.log(url);
             var title = $(this).find('cite').html();
             var index  = $('.left-nav #nav li').index($(this));
 

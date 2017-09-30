@@ -1,15 +1,17 @@
 package npu.manager.global;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.http.HttpRequest;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.html.HTMLDocument;
+
 import java.io.*;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
+
 import java.util.*;
 
 /**
@@ -88,6 +90,38 @@ public class GlobalFun {
             return GlobalVariable.UPLOAD_FILE_ERROR;
         }
 
+    }
+    
+    /**
+     * function getMenu
+     * @author ZLei
+     * @date 2017/9/30 
+     * @param power 管理员权限
+     * @return 返回管理员权限
+     * @todo 获取管理员权限
+     */
+    public static JSONObject getMenu(int power){
+        JSONObject jsonObject;
+        String jsonStr = "";
+        try{
+            ResourceLoader loader = new DefaultResourceLoader();
+            Resource resource = loader.getResource("classpath:/static/conf/config.json");
+
+            FileInputStream finput = new FileInputStream(resource.getFile());
+            InputStreamReader fileInputStream = new InputStreamReader(finput);
+            BufferedReader bufferedReader = new BufferedReader(fileInputStream);
+
+            String line = "";
+            while((line = bufferedReader.readLine()) != null){
+                jsonStr += line;
+
+            }
+        }catch (Exception e){
+            System.out.println(e.fillInStackTrace());
+        }
+        JSONObject obj = JSONObject.parseObject(jsonStr);
+        JSONObject menuObj = obj.getJSONObject(String.valueOf(power));
+        return menuObj;
     }
 
 }
