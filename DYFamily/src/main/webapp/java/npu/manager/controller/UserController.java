@@ -230,12 +230,11 @@ public class UserController {
         response.addHeader("Access-Control-Allow-Origin","*");
 
         JSONObject resJson = new JSONObject();
-
-        /**
-         * todo
-         */
-
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        int feedback = userService.userRegister(paramJson);
+        resJson.put("feedback",feedback);
         return resJson.toString();
+
     }
 
     /**
@@ -294,6 +293,5 @@ public class UserController {
         return resJson.toString();
 
     }
-
 
 }

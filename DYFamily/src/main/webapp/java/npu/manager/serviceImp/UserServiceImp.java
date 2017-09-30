@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.regex.Pattern;
 
 /**
  * Created by  on .
@@ -149,5 +151,28 @@ public class UserServiceImp implements UserService {
         Advice advice = new Advice(uid,bid, createTime,title,detail);
         managerMapper.addAdvice(advice);
         return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    @Override
+    public int userRegister(JSONObject paramJson) {
+
+        if((!paramJson.containsKey("uid")) || (!paramJson.containsKey("pass1")) ) {
+            return GlobalVariable.LOGIN_ERROR;
+        }
+        String uid = (String)paramJson.get("uid");
+        String pass1 = (String)paramJson.get("pass1");
+        //判断uid是否为数字，位数10
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        if (pattern.matcher(uid).matches()) {
+            if (uid.length() == 10) {
+                //数据库存储数据,包括用户名和密码
+                managerMapper.addUser(uid,pass1);
+                return GlobalVariable.REQUEST_SUCCESS;
+            }else {
+                return GlobalVariable.REGISTER_IDLENGTH_ERROR;
+            }
+        } else {
+            return GlobalVariable.REGISTER_IDNOTNUM_ERROR;
+        }
     }
 }

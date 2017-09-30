@@ -82,4 +82,20 @@ public class UserViewController {
         model.setViewName("user/advice");
         return model;
     }
+
+    /**
+     * function userRegister
+     * @author Mike
+     * @date 2017/9/29
+     * @return
+     * @todo  用户注册界面
+     */
+    @RequestMapping(value = "/userRegister", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView userRegister(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("user/Register");
+        return model;
+    }
+
 }

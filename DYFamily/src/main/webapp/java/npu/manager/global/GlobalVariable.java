@@ -17,6 +17,9 @@ public class GlobalVariable {
     public static final int PARAM_IS_NULL = 10004; // HTTP请求信息不完整
     public static final int param_TYPE_ERROR = 10005; // 参数类型出错
 
+    public static final int REGISTER_IDNOTNUM_ERROR = 11001; // 用户id不是数字
+    public static final int REGISTER_IDLENGTH_ERROR = 11002; // 用户id不是数字
+
     /**
      * session 表示的含义
      * 1. session.uid : 登录用户ID

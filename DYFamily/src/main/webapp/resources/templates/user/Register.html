@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/mycss.css" rel="stylesheet" type="text/css">
-    <link href="/css/sweet-alert.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8"></meta>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>
+    <link href="/css/mycss.css" rel="stylesheet" type="text/css"></link>
+    <link href="/css/sweet-alert.css" rel="stylesheet" type="text/css"></link>
 
     <script src="/js/jquery-3.0.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -12,7 +12,7 @@
     <script src="/js/myjs.js"></script>
     <title>注册</title>
 </head>
-<body>
+<body background="/images/bg3.jpg">
 <header class="LRHead">
     <h1>注册</h1>
 </header>
@@ -20,19 +20,18 @@
     <div class="LRForm">
         <form  id = "RegisterForm" method="post" action="">
             <div>
-                <input type="number" name="identityID" placeholder="学号" id = "RegisterID" /><br>
-                <input type="password" name="pass1" placeholder="密码" value="" id = "RegisterPass1" /><br>
-                <input type="password" name="pass2" placeholder="确认密码" value="" id = "RegisterPass2" /><br>
+                <input type="number" name="identityID" placeholder="学号" id = "RegisterID" /><br></br>
+                <input type="password" name="pass1" placeholder="密码" value="" id = "RegisterPass1" /><br></br>
+                <input type="password" name="pass2" placeholder="确认密码" value="" id = "RegisterPass2" /><br></br>
             </div>
         </form>
         <button class="btn MySmBtn" id = "LR_Register" style="width: 200px;">注册</button>
     </div>
 </div>
-<script src="/js/LR.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 
-        $("#btnLogin").click(function () {
+        $("#LR_Register").click(function () {
 
             if($("#RegisterPass1").val() != $("#RegisterPass2").val()){
                 alerterror("两次密码输入不一致");
@@ -47,6 +46,9 @@
             var resData = requestSend(sendurl, data);
             if(loadResult(resData.feedback)){
                 swal("恭喜", "注册成功", "success");
+                location.href = "/userView/userLogin";
+            }else {
+                alerterror("用户名格式不正确");
             }
 
         });

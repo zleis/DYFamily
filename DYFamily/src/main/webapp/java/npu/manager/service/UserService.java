@@ -82,7 +82,15 @@ public interface UserService {
      */
     public int userAddNewRecord(JSONObject paramJson);
 
-
+    /**
+     * function userRegister
+     * @author Mike
+     * @date 2017/9/16
+     * @param paramJson
+     * @return int 用户注册状态
+     * @todo 判断用户注册
+     */
+    public int userRegister(JSONObject paramJson);
 
 
 }

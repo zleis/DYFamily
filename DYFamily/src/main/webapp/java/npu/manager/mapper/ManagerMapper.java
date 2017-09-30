@@ -28,7 +28,7 @@ public interface ManagerMapper{
      * function getManagerByID
      * @author ZLei
      * @date 2017/9/19 
-     * @param uid
+     * @param mid
      * @return Manager
      * @todo 通过UID查找管理员信息
      */
@@ -78,6 +78,14 @@ public interface ManagerMapper{
      * @todo 获取公告的数量
      */
     public int getNoticeLen(@Param(value = "uid") String uid);
+
+    /**
+     * function addUser
+     * @author Mike
+     * @date 2017/9/30
+     * @todo 注册一个用户,只录入id与密码信息
+     */
+    public void addUser(@Param(value = "uid") String uid, @Param(value = "pass") String pass);
 
     public List<User> getUserListByInfo(Map<String, Object> map);
 }
