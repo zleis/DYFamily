@@ -134,7 +134,7 @@ public class UserServiceImp implements UserService {
             int nid = Integer.parseInt(paramJson.getString("nid"));
             String uid = paramJson.getString("uid");
             UserNotice userNotice = managerMapper.getUserNoticeList(uid,nid);
-            if(userNotice.getNoticeList() == null){
+            if(userNotice == null){
                 managerMapper.insertReadNotice(uid, nid);
             }else{
                 managerMapper.setNoticeRead(uid, nid);

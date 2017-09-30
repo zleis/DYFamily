@@ -74,7 +74,7 @@
     SELECT n.*,un.* FROM notice as n left JOIN
     (SELECT * from user_notice WHERE u_id = #{uid}) as un on n.n_id = un.n_id
     order by  case when un_isread is null then 1 else un_isread end DESC,
-    n_time limit #{start},#{itemNum}
+    n_time DESC limit #{start},#{itemNum}
     </select>
     
     <select id="getNoticeByID" resultMap="noticeMap">
@@ -157,7 +157,7 @@
     </insert>
     
     <select id="getUserNoticeList" resultMap="userNotice">
-        SELECT * FROM user_notice WHERE uid = #{uid} and nid = #{nid}
+        SELECT * FROM user_notice WHERE u_id = #{uid} and n_id = #{nid}
     </select>
 
     <insert id="insertReadNotice">
