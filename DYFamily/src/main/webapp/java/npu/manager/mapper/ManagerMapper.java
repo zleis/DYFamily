@@ -24,16 +24,7 @@ public interface ManagerMapper{
      */
     public User getUserByID(@Param(value = "uid") String uid);
 
-    /**
-     * function getManagerByID
-     * @author ZLei
-     * @date 2017/9/19 
-     * @param mid
-     * @return Manager
-     * @todo 通过UID查找管理员信息
-     */
-    public Manager getManagerByID(@Param(value = "mid") String mid);
-    
+
     /**
      * function getNoticeTitleList
      * @author ZLei
@@ -88,26 +79,27 @@ public interface ManagerMapper{
      */
     public void addUser(@Param(value = "uid") String uid, @Param(value = "pass") String pass);
 
-
-
-
-    /*--------------------------- 管理员 -----------------------------*/
     /**
-     * function getUserList
-     * @author ZLei
-     * @date 2017/9/28
-     * @todo 获取用户列表
+     * function addReadTimes
+     * @author Mike
+     * @date 2017/9/30
+     * @todo 添加阅读次数
      */
-    public List<User> getUserList();
+    public void addReadTimes(@Param(value = "nid")int nid);
+
+    /**--------------------------- 管理员 -----------------------------*/
 
     /**
-     * function getBranchList
+     * function getManagerByID
      * @author ZLei
-     * @date 2017/9/28
-     * @todo 获取支部列表
+     * @date 2017/9/19
+     * @param mid
+     * @return Manager
+     * @todo 通过UID查找管理员信息
      */
-    public List<Branch> getBranchList();
+    public Manager getManagerByID(@Param(value = "mid") String mid);
 
+    /* ----------  公告操作  ------------- */
     /**
      * function
      * @author ZLei
@@ -116,19 +108,118 @@ public interface ManagerMapper{
      */
     public List<Notice> getNoticeList();
 
+    /**
+     * function addNotice
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 添加公告
+     */
     public void addNotice(Notice notice);
 
+    /**
+     * function getUserNoticeList
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 获取某个用户的公告列表
+     */
     public UserNotice getUserNoticeList(@Param(value = "uid") String uid, @Param(value = "nid") int nid);
 
+    /**
+     * function insertReadNotice
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 添加已读公告
+     */
     public void insertReadNotice(@Param(value = "uid") String uid, @Param(value = "nid")int nid);
 
-    public List<User> getUserListByInfo(Map<String, Object> map);
+    /**
+     * function insertReadNotice
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 修改公告标题内容
+     */
+    public void updateNotcie(@Param(value = "nid")int nid, @Param(value = "title") String title,@Param(value = "detail") String detail);
+
+    /**
+     * function delNotice
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 删除公告
+     */
+    public void delNotice(@Param(value = "nid")int nid);
+    public void delUserNotice(@Param(value = "nid")int nid);
+
+    /* ---------  用户操作  ----------- */
+    /**
+     * function getUserList
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 获取用户列表
+     */
+    public List<User> getUserList();
 
 
 
+    /* ------------  支部操作  ------------- */
+    /**
+     * function getBranchList
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 获取支部列表
+     */
+    public List<Branch> getBranchList();
 
 
+    /**
+     * function addBranch
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 添加支部
+     */
+    public void addBranch(@Param(value = "bid") String bid,
+                          @Param(value = "bName") String bName,
+                          @Param(value = "bDes") String bDes);
 
+
+    /**
+     * function editBranch
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 修改支部
+     */
+    public void editBranch(@Param(value = "bid") String bid,
+                           @Param(value = "bName") String bName,
+                           @Param(value = "bDes") String bDes);
+
+    /**
+     * function getBranchByID
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 通过支部查找ID
+     */
+    public Branch getBranchByID(@Param(value = "bid") String bid);
+
+
+    /* ------------------------------  暂时用不到的操作  ------------------------------ */
+    /**
+     * @todo 获取用户个数
+     */
+    public int getUserListLen();
+
+
+    /**
+     * function delBranch
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 删除支部
+     */
+    public void delBranch(@Param(value = "bid") String bid);
+
+    /**
+     *
+     * @return 获取支部列表长度
+     */
+    public int getBranchListLen();
 
 
 }

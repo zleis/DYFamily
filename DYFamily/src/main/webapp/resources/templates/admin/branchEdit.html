@@ -24,36 +24,34 @@
 </head>
 
 <body>
-<div class="x-nav">
-        <span class="layui-breadcrumb">
-            <a href="">首页</a>
-            <a>
-                <cite>宝贵意见</cite>
-            </a>
-      </span>
-    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
-       href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-</div>
 <div class="x-body">
-    <h1 id = "noticeTitle" style="text-align: center; font-size: 20px">意见建议</h1>
+    <h1 id = "noticeTitle" style="text-align: center; font-size: 20px">支部修改</h1>
     <br></br>
     <div class="layui-form layui-form-pane">
         <div class="layui-form-item">
-            <label for="title" class="layui-form-label">
-                <span class="x-red">*</span>标题
+            <label for="branchID" class="layui-form-label">
+                <span class="x-red">*</span>支部ID
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="title" name="name" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input"></input>
+                <input type="number" id="branchID" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input"  readonly="true" th:value="${branch.bid}"></input>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="branchName" class="layui-form-label">
+                <span class="x-red">*</span>支部名称
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="branchName" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input" th:value="${branch.bName}"></input>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
-            <label for="desc" class="layui-form-label">
-                描述
+            <label for="branchDes" class="layui-form-label">
+                支部描述
             </label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" id="branchDes" name="desc" class="layui-textarea" th:text="${branch.bDetail}"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -67,24 +65,30 @@
 
     $(document).ready(function () {
         $("#submit").click(function () {
-            var title = $("#title").val();
-            var advice = $("#desc").val();
-            if(title.length ==0 || advice.length == 0){
+            var branchID = $("#branchID").val();
+            var branchName = $("#branchName").val();
+            var branchDes = $("#branchDes").val();
+
+            if(branchID.length != 10){
+                alerterror("填写正确的支部ID");
+            }
+            if(branchDes.length == 0 || branchName.length == 0){
                 alerterror("信息填写完整")
                 return;
             }
 
             var data = new Object();
-            var sendurl = "/user/giveAdvice";
-            data["title"] = title;
-            data["advice"] = encodeURI(advice);
+            var sendurl = "/admin/editBranch";
+            data["branchID"] = branchID;
+            data["branchName"] = encodeURI(branchName);
+            data["branchDes"] = encodeURI(branchDes);
             var resData = requestSend(sendurl,data);
             if(loadResult(resData.feedback)){
                 swal("提示","提交成功","success");
-                $("#title")[0].value = "";
-                $("#desc")[0].value = "";
-//                location.reload();
-            };
+                $("#branchID")[0].value = "";
+                $("#branchName")[0].value = "";
+                $("#branchDes")[0].value = "";
+            }
         });
     });
     //]]>

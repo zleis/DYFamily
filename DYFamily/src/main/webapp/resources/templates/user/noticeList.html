@@ -92,6 +92,7 @@
             data["limit"] = pageLen;
             data["itemNum"] = start;
             data["isGetLen"] =isgetLen;
+            console.log(data);
             var resData = requestSend(sendurl, data);
             if(loadResult(resData.feedback)){
                 loadTable($("#noticeList"),resData.noticeList.noticeList);

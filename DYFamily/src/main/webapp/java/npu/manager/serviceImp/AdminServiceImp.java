@@ -39,12 +39,16 @@ public class AdminServiceImp implements AdminService {
         String uid = (String)paramJson.get("uid");
         String pass = (String)paramJson.get("pass");
         Manager loginManager  = managerMapper.getManagerByID(uid);
+        if(loginManager == null){
+            return GlobalVariable.LOGIN_ERROR;
+        }
         if(!loginManager.getPass().equals(pass)){
             return GlobalVariable.LOGIN_ERROR;
         }
         return GlobalVariable.REQUEST_SUCCESS;
     }
 
+    /*------------------------- 公告管理 ---------------------------*/
     @Override
     public int getNoticeByID(JSONObject paramJson, JSONObject resJson) {
 
@@ -74,7 +78,6 @@ public class AdminServiceImp implements AdminService {
         return GlobalVariable.REQUEST_SUCCESS;
     }
 
-
     @Override
     public int addNotice(JSONObject paramJson, JSONObject resJson) {
         // 判断参数是否完整
@@ -91,6 +94,82 @@ public class AdminServiceImp implements AdminService {
         notice.setCreateTimes(createTime);
         notice.setReadTimes(readTime);
         managerMapper.addNotice(notice);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    @Override
+    public int editNotice(JSONObject paramJson, JSONObject resJson) {
+        // 判断参数是否完整
+        if(!paramJson.containsKey("nid") || !paramJson.containsKey("title") || !paramJson.containsKey("detail")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        String title = paramJson.getString("title"); // 意见大标题
+        String detail = paramJson.getString("detail"); // 意见内容
+        int nid = 0;
+        try {
+            nid = Integer.parseInt(paramJson.getString("nid"));
+        }catch (Exception e){
+            return GlobalVariable.param_TYPE_ERROR;
+        }
+
+        managerMapper.updateNotcie(nid,title,detail);
+
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    @Override
+    public int delNotice(JSONObject paramJson, JSONObject resJson) {
+
+        if(!paramJson.containsKey("nid")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+
+        int nid;
+        try{
+            nid = Integer.parseInt(paramJson.getString("nid"));
+        }catch (Exception e){
+            return GlobalVariable.param_TYPE_ERROR;
+        }
+        managerMapper.delUserNotice(nid);
+        managerMapper.delNotice(nid);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    /*------------------------- 支部管理 ---------------------------*/
+    @Override
+    public int addBranch(JSONObject paramJson, JSONObject resJson) {
+        if(!paramJson.containsKey("branchID") || !paramJson.containsKey("branchName") || !paramJson.containsKey("branchDes")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+
+        String branchID = paramJson.getString("branchID");
+        String branchName = paramJson.getString("branchName");
+        String branchDes = paramJson.getString("branchDes");
+        managerMapper.addBranch(branchID, branchName, branchDes);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    @Override
+    public int delBranch(JSONObject paramJson, JSONObject resJson) {
+
+        if(!paramJson.containsKey("bid")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+
+        String bid = paramJson.getString("bid");
+        return 0;
+    }
+
+    @Override
+    public int editBranch(JSONObject paramJson, JSONObject resJson) {
+        if(!paramJson.containsKey("branchID") || !paramJson.containsKey("branchName") || !paramJson.containsKey("branchDes")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+
+        String branchID = paramJson.getString("branchID");
+        String branchName = paramJson.getString("branchName");
+        String branchDes = paramJson.getString("branchDes");
+        managerMapper.editBranch(branchID, branchName, branchDes);
         return GlobalVariable.REQUEST_SUCCESS;
     }
 

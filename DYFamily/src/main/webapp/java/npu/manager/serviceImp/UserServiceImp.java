@@ -123,6 +123,7 @@ public class UserServiceImp implements UserService {
         if(notice == null){
             return GlobalVariable.GET_NOTICE_ERROR;
         }
+        managerMapper.addReadTimes(nid);
         notice.setEncoding();
         resJson.put("notice",notice);
         return GlobalVariable.REQUEST_SUCCESS;

@@ -75,7 +75,23 @@ function loadResult(feedback) {
     }
 }
 
-
+/**
+ * getBranchName
+ * @author ZLei
+ * @date 2017/9/18
+ * @param bid 支部ID
+ * @return String 支部名称
+ * @todo
+ */
+function getBranchName(bid,branchList) {
+    var len = branchList.length;
+    for(var i = 0; i < len; i++){
+        if(bid = branchList[i].bid){
+            return decodeURI(branchList[i].bName);
+        }
+    }
+    return "";
+}
 
 
 /**
