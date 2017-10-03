@@ -75,9 +75,6 @@ function loadResult(feedback) {
     }
 }
 
-
-
-
 /**
  * function
  * @author ZLei
