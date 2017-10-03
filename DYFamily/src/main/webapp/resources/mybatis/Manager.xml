@@ -113,7 +113,7 @@
     </select>
 
     <insert id="addUser" >
-        INSERT INTO USER (u_id, u_pass) VALUES (uid, pass);
+        INSERT INTO USER (u_id, u_pass) VALUES (#{uid}, #{pass});
     </insert>
 
 

@@ -83,6 +83,14 @@ public class UserViewController {
         return model;
     }
 
+    @RequestMapping(value = "/usermsg", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView usermsg(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("user/usermsg");
+        return model;
+    }
+
 
     /**
      * function userRegister
