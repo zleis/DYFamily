@@ -1,9 +1,7 @@
 package npu.manager.serviceImp;
 
 import com.alibaba.fastjson.JSONObject;
-import npu.manager.beans.Manager;
-import npu.manager.beans.Notice;
-import npu.manager.beans.UserNotice;
+import npu.manager.beans.*;
 import npu.manager.global.GlobalVariable;
 import npu.manager.mapper.ManagerMapper;
 import npu.manager.service.AdminService;
@@ -42,8 +40,63 @@ public class AdminViewServiceImp implements AdminViewService{
             notice.setEncoding();
         }
         resJson.put("noticeList",noticeList);
-        resJson.put("noticeLen", managerMapper.getAdminNoticeLen());
+        resJson.put("noticeLen", managerMapper.getNoticeLen());
         return resJson;
     }
 
+    @Override
+    public Notice getNoticeByID(int nid) {
+        Notice notice = managerMapper.getNoticeByID(nid);
+        return notice;
+    }
+
+    @Override
+    public JSONObject getUserList() {
+        JSONObject resJson = new JSONObject();
+        List<User> userList = managerMapper.getUserList();
+        for(User user:userList){
+            user.setEncoding();
+        }
+        resJson.put("userList",userList);
+//        resJson.put("userLen", managerMapper.getUserListLen());
+        return resJson;
+    }
+
+    @Override
+    public JSONObject getUserByID(String uid) {
+        JSONObject resJson = new JSONObject();
+        User user = managerMapper.getUserByID(uid);
+        user.setPass("");
+        if(user.getBid()!=null){
+            List<Branch> branchList = managerMapper.getBranchList();
+            for(Branch branch:branchList){
+                if(user.getBid().equals(branch.getBid())){
+                    resJson.put("userBranchName",branch.getbName());
+                    break;
+                }
+            }
+        }
+        user.setEncoding();
+        resJson.put("user",user);
+        return resJson;
+    }
+
+    @Override
+    public JSONObject getBranchList() {
+        JSONObject resJson = new JSONObject();
+        List<Branch> branchList = managerMapper.getBranchList();
+        for(Branch branch:branchList){
+            branch.setEncoding();
+        }
+        resJson.put("branchList",branchList);
+//        System.out.println(resJson.toString());
+        return resJson;
+    }
+
+    @Override
+    public Branch getBranchByID(String bid) {
+        JSONObject resJson = new JSONObject();
+        Branch branch = managerMapper.getBranchByID(bid);
+        return branch;
+    }
 }

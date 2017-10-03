@@ -9,11 +9,11 @@
       content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"></meta>
 
 <link rel="stylesheet" href="/css/xadmin.css"></link>
-
+<link href="/css/sweet-alert.css" rel="stylesheet" type="text/css"></link>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="/js/xadmin.js"></script>
-<!--<script type="text/javascript" src="/js/sweet-alert.min.js" ></script>-->
+<script type="text/javascript" src="/js/sweet-alert.min.js" ></script>
 <script type="text/javascript" src="/js/md5.js"></script>
 <script type="text/javascript" src="/js/myjs.js"></script>
 <!--[if lt IE 9]>
@@ -41,6 +41,7 @@
                 <th>标题</th>
                 <th>时间</th>
                 <th>浏览量</th>
+                <th>编辑</th>
             </tr>
         </thead>
         <tbody id = "noticeList">
@@ -57,11 +58,35 @@
     //<![CDATA[
     var noticeLsit = [[${noticeList}]];
     var noticeLen = [[${noticeLen}]];
-    var pageLen = 4;
+    var pageLen = 20;
     var pageNum = 1;
+    
     function readNotice(id) {
         location.href = "./noticeItem?nid="+id;
     }
+    
+    function noticeDel(node, id){
+        swal({
+                title: "确定",
+                text: "您将删除该公告，是否确定",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false
+            },
+            function(){
+                var data = new Object();
+                var sendurl = "/admin/delNotice";
+                data['nid'] = id;
+                var resData = requestSend(sendurl, data);
+                window.location.reload()
+//                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            });
+
+    }
+
     function loadTable(pNode,page){
         var start = ( page - 1 ) * pageLen;
         var table = "";
@@ -76,6 +101,13 @@
             row += "<td><a onclick='readNotice(" + noticeLsit[index].nid + ")' href='#'>" + decodeURI(noticeLsit[index].title) + "</a></td>";
             row += "<td>" + format(noticeLsit[index].createTimes) + "</td>";
             row += "<td>" + decodeURI(noticeLsit[index].readTimes) + "</td>";
+            row += "<td>";
+            row += "<a title=\"编辑\"  onclick=\"x_admin_show('编辑','/adminView/editNotice?nid=" + noticeLsit[index].nid + "',600,400)\" href=\"javascript:;\">" +
+                   "<i class=\"layui-icon\">&#xe642;</i>" +
+                   "</a>" +
+                   "<a title=\"删除\" onclick=\"noticeDel(this," + noticeLsit[index].nid + ")\" href=\"javascript:;\">" +
+                   "<i class=\"layui-icon\">&#xe640;</i>" +
+                   "</a>";
             row += "</tr>";
             table += row;
         }
@@ -96,16 +128,10 @@
         pageNum = page;
     }
     $(document).ready(function () {
-
-
         function loadData(page){
-
             console.log(noticeLsit);
             console.log(noticeLen);
             loadTable($("#noticeList"),page);
-
-
-
         }
 
         loadData(1);

@@ -36,7 +36,7 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <h1 id = "noticeTitle" style="text-align: center; font-size: 20px">意见建议</h1>
+    <h1 id = "noticeTitle" style="text-align: center; font-size: 20px">公告</h1>
     <br></br>
     <div class="layui-form layui-form-pane">
         <div class="layui-form-item">
@@ -75,9 +75,9 @@
             }
 
             var data = new Object();
-            var sendurl = "/user/giveAdvice";
+            var sendurl = "/admin/addNotice";
             data["title"] = title;
-            data["advice"] = encodeURI(advice);
+            data["detail"] = encodeURI(advice);
             var resData = requestSend(sendurl,data);
             if(loadResult(resData.feedback)){
                 swal("提示","提交成功","success");

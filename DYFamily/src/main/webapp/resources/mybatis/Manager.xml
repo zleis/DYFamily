@@ -21,6 +21,22 @@
         <result column="u_iscomp" property="isComp"/>
     </resultMap>
 
+    <resultMap id="userListMap" type="npu.manager.beans.User">
+        <result column="u_id" property="uid"/>
+        <result column="u_name" property="name"/>
+        <result column="u_sex" property="sex"/>
+        <result column="u_birth" property="birth"/>
+        <result column="u_phone" property="phone"/>
+        <result column="u_mail" property="mail"/>
+        <result column="u_grade" property="grade"/>
+        <result column="u_class" property="classNum"/>
+        <result column="b_id" property="bid"/>
+        <result column="u_regist_time" property="registerTime"/>
+        <result column="u_spec" property="special"/>
+        <result column="u_cogition" property="cognition"/>
+        <result column="u_iscomp" property="isComp"/>
+    </resultMap>
+
     <!-- Manager Map -->
     <resultMap id="managerMap" type="npu.manager.beans.Manager">
         <result column="m_id" property="mid"/>
@@ -40,7 +56,7 @@
     </resultMap>
 
     <resultMap id="userNotice" type="npu.manager.beans.UserNotice">
-        <result column="u_id" property="uid" />
+
         <collection property="noticeList" ofType="npu.manager.beans.Notice">
             <result column="n_id" property="nid" />
             <result column="n_type" property="nType" />
@@ -54,23 +70,24 @@
     
     <resultMap id="branchMap" type="npu.manager.beans.Branch">
         <result column="b_id" property="bid" />
-        <result column="b_type" property="bName" />
+        <result column="b_name" property="bName" />
         <result column="b_detail" property="bDetail" />
     </resultMap>
+
 
     <!-- 通过ID获取User  -->
     <select id="getUserByID" resultMap="userMap">
         select * from user where u_id = #{uid}
     </select>
 
-    <!-- 通过ID获得Manger -->
-    <select id="getManagerByID" resultMap="managerMap">
-        SELECT * from manager where m_id = #{mid}
-    </select>
+
 
     <!-- 获得通知列表 -->
     <select id="getNoticeTitleList" resultMap="userNotice">
-        SELECT * FROM notice as n, user_notice as un  where n.n_id = un.n_id and u_id = #{uid} order by un_isread DESC, n_time limit #{start},#{itemNum}
+    SELECT n.*,un.* FROM notice as n left JOIN
+    (SELECT * from user_notice WHERE u_id = #{uid}) as un on n.n_id = un.n_id
+    order by  case when un_isread is null then 1 else un_isread end DESC,
+    n_time DESC limit #{start},#{itemNum}
     </select>
     
     <select id="getNoticeByID" resultMap="noticeMap">
@@ -109,32 +126,106 @@
     </insert>
 
     <select id="getNoticeLen" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM user_notice WHERE u_id = #{uid}
+        SELECT count(*) from notice
     </select>
 
     <insert id="addUser" >
         INSERT INTO USER (u_id, u_pass) VALUES (#{uid}, #{pass});
     </insert>
-
+    
+    <update id="addReadTimes">
+        UPDATE notice set n_read_time = n_read_time + 1 where n_id = #{nid}
+    </update>
 
     <!-- *********************  管理员后台 *************************-->
-    <select id="getUserList" resultMap="userMap">
-        SELECT * FROM user
+
+    <!-- 通过ID获得Manger -->
+    <select id="getManagerByID" resultMap="managerMap">
+        SELECT * from manager where m_id = #{mid}
     </select>
 
-    <select id="getBranchList" resultMap="branchMap">
-        SELECT * FROM branch
-    </select>
-
+    <!-- *********** 公告管理 ***************-->
     <select id="getNoticeList" resultMap="noticeMap">
         SELECT * from notice
     </select>
 
-    <select id="getAdminNoticeLen" resultType="java.lang.Integer">
-        SELECT count(*) from notice
+    
+    <insert id="addNotice" parameterType="npu.manager.beans.Notice">
+        INSERT into notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="nType != null">n_type,</if>
+            <if test="title != null">n_title,</if>
+            <if test="subTitle != null">n_subtitle,</if>
+            <if test="readTimes != null">n_read_time,</if>
+            <if test="createTimes != null">n_time,</if>
+            <if test="detail != null">n_detail,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="nType != null">#{nType},</if>
+            <if test="title != null">#{title},</if>
+            <if test="subTitle != null">#{subTitle},</if>
+            <if test="readTimes != null">#{readTimes},</if>
+            <if test="createTimes != null">#{createTimes},</if>
+            <if test="detail != null">#{detail},</if>
+        </trim>
+    </insert>
+    
+    <select id="getUserNoticeList" resultMap="userNotice">
+        SELECT * FROM user_notice WHERE u_id = #{uid} and n_id = #{nid}
+    </select>
+
+    <insert id="insertReadNotice">
+        INSERT  into user_notice VALUES (#{uid}, #{nid}, 0)
+    </insert>
+    
+    <update id="updateNotcie">
+        UPDATE notice set n_title=#{title}, n_detail = #{detail} where n_id = #{nid}
+    </update>
+
+    <delete id="delNotice">
+        DELETE FROM notice where n_id = #{nid}
+    </delete>
+    
+    <delete id="delUserNotice">
+        DELETE FROM user_notice where n_id = #{nid}
+    </delete>
+
+    <!-- ********* 人员管理 ************* -->
+    <select id="getUserList" resultMap="userListMap">
+        SELECT * FROM user
     </select>
 
 
 
+    <select id="getUserListLen" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user
+    </select>
+
+
+
+    <!-- ************ 支部管理 ************* -->
+    <select id="getBranchList" resultMap="branchMap">
+        SELECT * FROM branch
+    </select>
+
+    <select id="getBranchListLen" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM branch
+    </select>
+    
+    <insert id="addBranch">
+        INSERT INTO branch VALUES (#{bid}, #{bName}, #{bDes})
+    </insert>
+    
+    <delete id="delBranch">
+        DELETE FROM branch WHERE b_id = #{bid}
+    </delete>
+
+    <update id="editBranch">
+        UPDATE branch SET b_name = #{bName}, b_detail = #{bDes} WHERE b_id = #{bid}
+    </update>
+    
+    <select id="getBranchByID" resultMap="branchMap">
+        SELECT * FROM branch WHERE b_id = #{bid}
+    </select>
 
 </mapper>

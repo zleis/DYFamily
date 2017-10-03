@@ -1,5 +1,7 @@
 package npu.manager.beans;
 
+import java.net.URLEncoder;
+
 /**
  * Created by  on .
  *
@@ -59,6 +61,21 @@ public class Branch {
         this.bDetail = bDetail;
     }
 
+    /**
+     * @todo 设置字符串编码
+     */
+    public void setEncoding(){
+        try {
+            if(this.bName != null){
+                this.bName = URLEncoder.encode(this.bName, "utf-8");
+            }
+            if(this.bDetail != null){
+                this.bDetail = URLEncoder.encode(this.bDetail,"utf-8");
+            }
+        }catch (Exception e){
+
+        }
+    }
     @Override
     public String toString() {
         return "Branch{" +

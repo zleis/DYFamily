@@ -1,6 +1,8 @@
 package npu.manager.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import npu.manager.beans.Branch;
 import npu.manager.beans.Notice;
 import npu.manager.global.GlobalFun;
 import npu.manager.global.GlobalVariable;
@@ -82,7 +84,7 @@ public class AdminViweController {
     public ModelAndView listNotice(HttpServletRequest request, HttpServletResponse response){
         ModelAndView model = new ModelAndView();
         HttpSession session = request.getSession();
-        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+        if(session.getAttribute("login_con") == null || !session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
             model.setViewName("admin/Login");
             return model;
         }
@@ -94,13 +96,191 @@ public class AdminViweController {
         return model;
     }
 
+    /**
+     * function noticeItem
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  公告详情
+     */
     @RequestMapping(value = "/noticeItem", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView noticeItem(HttpServletRequest request){
         ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(session.getAttribute("login_con") == null || !session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
         model.setViewName("admin/noticeItem");
         JSONObject paramJson = GlobalFun.getParamFromRequest(request);
         model.addObject("nid",paramJson.getString("nid"));
         return model;
     }
+
+    /**
+     * function addNotice
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  添加公告
+     */
+    @RequestMapping(value = "/addNotice", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView addNotice(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(session.getAttribute("login_con") == null || !session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+        model.setViewName("admin/noticeAdd");
+        return model;
+    }
+
+    /**
+     * function editNotice
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  修改公告
+     */
+    @RequestMapping(value = "/editNotice", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView editNotice(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        Notice notice = adminViewService.getNoticeByID(Integer.parseInt(paramJson.getString("nid")));
+
+        model.addObject("nid",paramJson.getString("nid"));
+        model.addObject("notice",notice);
+        model.setViewName("admin/noticeEdit");
+        return model;
+    }
+
+
+    /*---------------------------------user----------------------------------*/
+
+    /**
+     * function userList
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  用户列表
+     */
+    @RequestMapping(value = "/userList", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView userList(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(session.getAttribute("login_con") == null || !session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+
+        JSONObject msg = adminViewService.getUserList();
+        JSONObject branchMsg = adminViewService.getBranchList();
+
+        model.addObject("userList",msg.get("userList"));
+        model.addObject("branchList",branchMsg.get("branchList"));
+
+        model.setViewName("admin/userList");
+        return model;
+    }
+
+    /**
+     * function userList
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  用户列表
+     */
+    @RequestMapping(value = "/userItem", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView userItem(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(session.getAttribute("login_con") == null || !session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        JSONObject msg = adminViewService.getUserByID(paramJson.getString("uid"));
+        model.addObject("user",msg.get("user"));
+        model.addObject("userBranchName",msg.get("userBranchName"));
+        model.setViewName("admin/userItem");
+        return model;
+    }
+
+    /*---------------------------------branch----------------------------------*/
+
+    /**
+     * function branchList
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  支部列表
+     */
+    @RequestMapping(value = "/branchList", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView branchList(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+        JSONObject msg = adminViewService.getBranchList();
+        model.addObject("branchList",msg.get("branchList"));
+
+        model.setViewName("admin/branchList");
+        return model;
+    }
+
+    /**
+     * function branchAdd
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  添加支部
+     */
+    @RequestMapping(value = "/branchAdd", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView branchAdd(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+
+        model.setViewName("admin/branchAdd");
+        return model;
+    }
+
+    /**
+     * function branchEdit
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  修改支部
+     */
+    @RequestMapping(value = "/branchEdit", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView branchEdit(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        Branch msg = adminViewService.getBranchByID(paramJson.getString("bid"));
+        model.addObject("branch",msg);
+        model.setViewName("admin/branchEdit");
+        return model;
+    }
+
+
 }

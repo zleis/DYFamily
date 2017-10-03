@@ -1,5 +1,6 @@
 package npu.manager.beans;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 /**
@@ -235,6 +236,27 @@ public class User {
      */
     public void setIsComp(int isComp) {
         this.isComp = isComp;
+    }
+
+    /**
+     * @todo 设置字符串编码
+     */
+    public void setEncoding(){
+        try {
+            if(this.name != null){
+                this.name = URLEncoder.encode(this.name, "utf-8");
+            }
+
+            if(this.special != null){
+                this.special = URLEncoder.encode(this.special,"utf-8");
+            }
+
+            if(this.cognition != null){
+                this.cognition = URLEncoder.encode(this.cognition,"utf-8");
+            }
+        }catch (Exception e){
+
+        }
     }
 
     @Override

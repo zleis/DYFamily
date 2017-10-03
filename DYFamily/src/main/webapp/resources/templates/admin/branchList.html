@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"></meta>
+    <title></title>
+    <meta name="renderer" content="webkit"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"></meta>
+
+    <link rel="stylesheet" href="/css/xadmin.css"></link>
+    <link href="/css/sweet-alert.css" rel="stylesheet" type="text/css"></link>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/xadmin.js"></script>
+    <script type="text/javascript" src="/js/sweet-alert.min.js" ></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/myjs.js"></script>
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+</head>
+
+<body>
+<div class="x-nav">
+        <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a>
+                <cite>公告列表</cite>
+            </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>支部名称</th>
+            <th>支部描述</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id = "noticeList">
+        </tbody>
+    </table>
+    <div class="page">
+        <div id = "pageList">
+
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+
+    //<![CDATA[
+    var branchList = [[${branchList}]];
+    var userLen = branchList.length;
+    var pageLen = 20;
+    var pageNum = 1;
+
+    function branchDel(node, id){
+        swal({
+                title: "确定",
+                text: "您将删除该支部，是否确定",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false
+            },
+            function(){
+                var data = new Object();
+                var sendurl = "/admin/delBranch";
+                data['bid'] = id;
+                requestSend(sendurl, data);
+                window.location.reload();
+            });
+
+    }
+
+    function loadTable(pNode,page){
+        var start = ( page - 1 ) * pageLen;
+        var table = "";
+        for(var index = start; index < start + pageLen; index++)
+        {
+            if( typeof branchList[index]  == "undefined" ){
+                break;
+            }
+            var row = "";
+            row += "<tr>";
+            row += "<td>" + (index+1) + "</td>";
+            row += "<td>" + decodeURI(branchList[index].bName) + "</a></td>";
+            row += "<td>" + decodeURI(branchList[index].bDetail) + "</td>";
+            row += "<td>";
+            row += "<a title=\"编辑\"  onclick=\"x_admin_show('编辑','/adminView/branchEdit?bid=" + branchList[index].bid + "',600,400)\" href=\"javascript:;\">" +
+                "<i class=\"layui-icon\">&#xe642;</i>" +
+                "</a>"
+//                +
+//                "<a title=\"删除\" onclick=\"branchDel(this," + branchList[index].bid + ")\" href=\"javascript:;\">" +
+//                "<i class=\"layui-icon\">&#xe640;</i>" +
+//                "</a>"
+            ;
+            row += "</tr>";
+            table += row;
+        }
+        pNode.children('tr').remove();
+        pNode.append(table);
+        $("#pageList").children('a').remove();
+        $("#pageList").children('span').remove();
+        var pageList = "";
+        for( var i = 0; i <= userLen/pageLen; i++){
+            if( i != (page-1) ){
+                pageList += "<a id = 'page" + i + "' class='num' href='#' onclick='loadTable($(\"#noticeList\"), " +  (i+1) + " )'>" + (i+1) + "</a>";
+            }else{
+                pageList += "<span id = 'page" + i + "' class='current' href='#' onclick='loadTable($(\"#noticeList\"), " +  (i+1) + " )'>" + (i+1) + "</span>";
+            }
+
+        }
+        $("#pageList").append(pageList);
+        pageNum = page;
+    }
+    $(document).ready(function () {
+        function loadData(page){
+            console.log(branchList);
+            loadTable($("#noticeList"),page);
+        }
+
+        loadData(1);
+    });
+    //]]>
+</script>
+</body>
+
+</html>

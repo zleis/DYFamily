@@ -93,7 +93,7 @@ public class UserServiceImp implements UserService {
         userNotice.setEncoding(); // 设置编码
         resJson.put("noticeList",userNotice);
         if(paramJson.containsKey("isGetLen") && paramJson.getString("isGetLen").equals("1")){
-            resJson.put("noticeLen", managerMapper.getNoticeLen(uid));
+            resJson.put("noticeLen", managerMapper.getNoticeLen());
         }
 
         System.out.println(((Notice) userNotice.getNoticeList().get(0)).toString());
@@ -123,6 +123,7 @@ public class UserServiceImp implements UserService {
         if(notice == null){
             return GlobalVariable.GET_NOTICE_ERROR;
         }
+        managerMapper.addReadTimes(nid);
         notice.setEncoding();
         resJson.put("notice",notice);
         return GlobalVariable.REQUEST_SUCCESS;
@@ -133,7 +134,13 @@ public class UserServiceImp implements UserService {
         try{
             int nid = Integer.parseInt(paramJson.getString("nid"));
             String uid = paramJson.getString("uid");
-            managerMapper.setNoticeRead(uid, nid);
+            UserNotice userNotice = managerMapper.getUserNoticeList(uid,nid);
+            if(userNotice == null){
+                managerMapper.insertReadNotice(uid, nid);
+            }else{
+                managerMapper.setNoticeRead(uid, nid);
+            }
+
         }catch (Exception e){
             System.out.println(e.fillInStackTrace());
             System.out.println("setNoticeRead error");
