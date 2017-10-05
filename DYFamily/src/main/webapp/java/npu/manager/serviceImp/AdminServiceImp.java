@@ -3,6 +3,7 @@ package npu.manager.serviceImp;
 import com.alibaba.fastjson.JSONObject;
 import npu.manager.beans.Manager;
 import npu.manager.beans.Notice;
+import npu.manager.beans.Record;
 import npu.manager.beans.User;
 import npu.manager.global.GlobalVariable;
 import npu.manager.mapper.ManagerMapper;
@@ -170,6 +171,112 @@ public class AdminServiceImp implements AdminService {
         String branchName = paramJson.getString("branchName");
         String branchDes = paramJson.getString("branchDes");
         managerMapper.editBranch(branchID, branchName, branchDes);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    /*------------------------- 支部活动管理 ---------------------------*/
+    @Override
+    public int addRecord(JSONObject paramJson, JSONObject resJson) {
+        if(!paramJson.containsKey("branchName") || !paramJson.containsKey("recordDate")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        if(!paramJson.containsKey("recordPlace") || !paramJson.containsKey("recordUserNum")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        if(!paramJson.containsKey("recordUserRelNum") || !paramJson.containsKey("recordCommon")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        if(!paramJson.containsKey("recordDetail")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+
+        String branchName = paramJson.getString("branchName");
+        String recordTheme = paramJson.getString("recordTheme");
+        String recordDateStr = paramJson.getString("recordDate");
+        String recordPlace = paramJson.getString("recordPlace");
+        String recordUserNumStr = paramJson.getString("recordUserNum");
+        String recordUserRelNumStr = paramJson.getString("recordUserRelNum");
+        String recordCommon = paramJson.getString("recordCommon");
+        String recordDetail = paramJson.getString("recordDetail");
+        Date recordDate;
+        int recordUserNum, recordUserRelNum;
+        try{
+            recordDate = GlobalVariable.sdf.parse(recordDateStr);
+            recordUserNum = Integer.parseInt(recordUserNumStr);
+            recordUserRelNum = Integer.parseInt(recordUserRelNumStr);
+
+        }catch (Exception e){
+            return GlobalVariable.param_TYPE_ERROR;
+        }
+        Record record = new Record();
+        record.setBid(branchName);
+        record.setTheme(recordTheme);
+        record.setRecordTime(recordDate);
+        record.setPlace(recordPlace);
+        record.setUnNumber(recordUserNum);
+        record.setArrNumber(recordUserRelNum);
+        record.setComment(recordCommon);
+        record.setRecordDetail(recordDetail);
+
+        managerMapper.insertRecord(record);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    @Override
+    public int editRecord(JSONObject paramJson, JSONObject resJson) {
+        if(!paramJson.containsKey("branchName") || !paramJson.containsKey("recordDate")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        if(!paramJson.containsKey("recordPlace") || !paramJson.containsKey("recordUserNum")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        if(!paramJson.containsKey("recordUserRelNum") || !paramJson.containsKey("recordCommon")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        if(!paramJson.containsKey("recordDetail")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        String ridStr = paramJson.getString("rid");
+        String branchName = paramJson.getString("branchName");
+        String recordTheme = paramJson.getString("recordTheme");
+        String recordDateStr = paramJson.getString("recordDate");
+        String recordPlace = paramJson.getString("recordPlace");
+        String recordUserNumStr = paramJson.getString("recordUserNum");
+        String recordUserRelNumStr = paramJson.getString("recordUserRelNum");
+        String recordCommon = paramJson.getString("recordCommon");
+        String recordDetail = paramJson.getString("recordDetail");
+        Date recordDate;
+        int recordUserNum, recordUserRelNum,rid;
+        try{
+            rid = Integer.parseInt(ridStr);
+            recordDate = GlobalVariable.sdf.parse(recordDateStr);
+            recordUserNum = Integer.parseInt(recordUserNumStr);
+            recordUserRelNum = Integer.parseInt(recordUserRelNumStr);
+        }catch (Exception e){
+            return GlobalVariable.param_TYPE_ERROR;
+        }
+        Record record = new Record();
+        record.setRid(rid);
+        record.setBid(branchName);
+        record.setTheme(recordTheme);
+        record.setRecordTime(recordDate);
+        record.setPlace(recordPlace);
+        record.setUnNumber(recordUserNum);
+        record.setArrNumber(recordUserRelNum);
+        record.setComment(recordCommon);
+        record.setRecordDetail(recordDetail);
+
+        managerMapper.updateRecord(record);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
+    @Override
+    public int delRecord(JSONObject paramJson, JSONObject resJson) {
+        if(!paramJson.containsKey("rid")){
+            return GlobalVariable.PARAM_IS_NULL;
+        }
+        int rid = Integer.parseInt(paramJson.getString("rid"));
+        managerMapper.delRecord(rid);
         return GlobalVariable.REQUEST_SUCCESS;
     }
 

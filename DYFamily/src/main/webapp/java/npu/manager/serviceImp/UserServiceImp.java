@@ -96,7 +96,7 @@ public class UserServiceImp implements UserService {
             resJson.put("noticeLen", managerMapper.getNoticeLen());
         }
 
-        System.out.println(((Notice) userNotice.getNoticeList().get(0)).toString());
+//        System.out.println(((Notice) userNotice.getNoticeList().get(0)).toString());
 
         return GlobalVariable.REQUEST_SUCCESS;
     }

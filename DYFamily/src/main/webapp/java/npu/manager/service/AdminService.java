@@ -98,6 +98,36 @@ public interface AdminService {
     public int editBranch(JSONObject paramJson,JSONObject resJson);
 
     /**
+     * function addRecord
+     * @author ZLei
+     * @date 2017/9/19
+     * @param paramJson HTTP 请求参数
+     * @return int HTTP请求状态
+     * @todo 添加记录
+     */
+    public int addRecord(JSONObject paramJson,JSONObject resJson);
+
+    /**
+     * function editRecord
+     * @author ZLei
+     * @date 2017/9/19
+     * @param paramJson HTTP 请求参数
+     * @return int HTTP请求状态
+     * @todo 修改记录
+     */
+    public int editRecord(JSONObject paramJson,JSONObject resJson);
+
+    /**
+     * function delRecord
+     * @author ZLei
+     * @date 2017/9/19
+     * @param paramJson HTTP 请求参数
+     * @return int HTTP请求状态
+     * @todo 删除记录
+     */
+    public int delRecord(JSONObject paramJson,JSONObject resJson);
+
+    /**
      * function adminLookUpUser
      * @author ZLei
      * @date 2017/9/19

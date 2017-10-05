@@ -80,9 +80,8 @@
                 var data = new Object();
                 var sendurl = "/admin/delNotice";
                 data['nid'] = id;
-                var resData = requestSend(sendurl, data);
-                window.location.reload()
-//                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                requestSend(sendurl, data);
+                window.location.reload();
             });
 
     }
@@ -129,8 +128,8 @@
     }
     $(document).ready(function () {
         function loadData(page){
-            console.log(noticeLsit);
-            console.log(noticeLen);
+//            console.log(noticeLsit);
+//            console.log(noticeLen);
             loadTable($("#noticeList"),page);
         }
 

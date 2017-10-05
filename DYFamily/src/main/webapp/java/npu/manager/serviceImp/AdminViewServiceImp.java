@@ -95,8 +95,27 @@ public class AdminViewServiceImp implements AdminViewService{
 
     @Override
     public Branch getBranchByID(String bid) {
-        JSONObject resJson = new JSONObject();
         Branch branch = managerMapper.getBranchByID(bid);
         return branch;
+    }
+
+    @Override
+    public JSONObject getRecordList() {
+        JSONObject resJson = new JSONObject();
+        List<Record> recordList = managerMapper.getRecordList();
+        for(Record record:recordList){
+            record.setEncoding();
+        }
+        resJson.put("recordList",recordList);
+//        System.out.println(resJson.toString());
+        return resJson;
+    }
+
+    @Override
+    public Record getRecordByID(int rid) {
+        Record record = managerMapper.getRecordByID(rid);
+//        System.out.println(record.toString());
+//        record.setEncoding();
+        return record;
     }
 }

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"></meta>
+    <title></title>
+    <meta name="renderer" content="webkit"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"></meta>
+
+    <link rel="stylesheet" href="/css/xadmin.css"></link>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>
+    <link href="/css/sweet-alert.css" rel="stylesheet" type="text/css"></link>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/xadmin.js"></script>
+    <script type="text/javascript" src="/js/sweet-alert.min.js" ></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/myjs.js"></script>
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+</head>
+
+<body>
+<div class="x-nav">
+        <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a>
+                <cite>添加活动记录</cite>
+            </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <h1 id = "noticeTitle" style="text-align: center; font-size: 20px">活动记录</h1>
+    <br></br>
+    <div class=" layui-row layui-form layui-form-pane ">
+        <div class="layui-form-item layui-col-md4">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>支部名称
+            </label>
+            <div class="layui-input-inline">
+                <select name="contrller" id = "branchName" >
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-col-md4">
+            <label for="recordTheme" class="layui-form-label">
+                <span class="x-red">*</span>活动主题
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="recordTheme" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input"></input>
+            </div>
+        </div>
+        <div class="layui-form-item layui-col-md4">
+            <label for="recordDate" class="layui-form-label">
+                <span class="x-red">*</span>活动日期
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="recordDate" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input"></input>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-col-md4">
+            <label for="recordPlace" class="layui-form-label">
+                <span class="x-red">*</span>活动地点
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="recordPlace" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input"></input>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="recordUserNum" class="layui-form-label">
+                <span class="x-red">*</span>活动人数
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" id="recordUserNum" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input"></input>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="recordUserRelNum" class="layui-form-label">
+                <span class="x-red">*</span>实到人数
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" id="recordUserRelNum" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input"></input>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="recordCommon" class="layui-form-label">
+                <span class="x-red">*</span>备注
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="recordCommon" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input"></input>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label for="recordDetail" class="layui-form-label">
+                活动记录
+            </label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" id="recordDetail" name="desc" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" id = "submit">增加</button>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+
+    //<![CDATA[
+    var branchList = [[${branchList}]];
+//    console.log([[${branchList}]]);
+
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#recordDate' //指定元素
+        });
+    });
+    $(document).ready(function () {
+        $("#branchName").children('option').remove();
+        var option = "";
+        for(var i = 0; i < branchList.length; i++){
+            option += "<option value = '" + branchList[i].bid + "'>" + decodeURI(branchList[i].bName) + "</option>";
+        }
+        $("#branchName").append(option);
+
+        $("#submit").click(function () {
+            var branchName = $("#branchName").val();
+            var recordTheme = $("#recordTheme").val();
+            var recordDate = $("#recordDate").val();
+            var recordPlace = $("#recordPlace").val();
+            var recordUserNum = $("#recordUserNum").val();
+            var recordUserRelNum = $("#recordUserRelNum").val();
+            var recordCommon = $("#recordCommon").val();
+            var recordDetail = $("#recordDetail").val();
+
+            var data = new Object();
+            var sendurl = "/admin/addRecord";
+            data["branchName"] = encodeURI(branchName);
+            data["recordTheme"] = encodeURI(recordTheme);
+            data["recordDate"] = encodeURI(recordDate);
+            data["recordPlace"] = encodeURI(recordPlace);
+            data["recordUserNum"] = encodeURI(recordUserNum);
+            data["recordUserRelNum"] = encodeURI(recordUserRelNum);
+            data["recordCommon"] = encodeURI(recordCommon);
+            data["recordDetail"] = encodeURI(recordDetail);
+            var resData = requestSend(sendurl,data);
+            if(loadResult(resData.feedback)){
+                swal("提示","提交成功","success");
+                $("#branchName")[0].value = "";
+                $("#recordTheme")[0].value = "";
+                $("#recordDate")[0].value = "";
+                $("#recordPlace")[0].value = "";
+                $("#recordUserNum")[0].value = "";
+                $("#recordUserRelNum")[0].value = "";
+                $("#recordCommon")[0].value = "";
+                $("#recordDetail")[0].value = "";
+            }
+        });
+    });
+    //]]>
+</script>
+</body>
+
+</html>

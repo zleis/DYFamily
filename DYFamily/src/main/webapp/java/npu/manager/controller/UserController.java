@@ -134,7 +134,7 @@ public class UserController {
         int feedback = userService.getNoticeTitleList(paramJson,resJson);
 
         resJson.put("feedback",feedback);
-        System.out.println(resJson.toString());
+//        System.out.println(resJson.toString());
         return resJson.toString();
     }
 

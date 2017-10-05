@@ -1,5 +1,7 @@
 package npu.manager.global;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by  on .
  *
@@ -22,6 +24,7 @@ public class GlobalVariable {
     public static final int REGISTER_IDNOTNUM_ERROR = 11001; // 用户id不是数字
     public static final int REGISTER_IDLENGTH_ERROR = 11002; // 用户id不是数字
 
+    public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * session 表示的含义
      * 1. session.uid : 登录用户ID
@@ -31,7 +34,7 @@ public class GlobalVariable {
 
     public static final String USER_LOGIN_CON = "1";
     public static final String MANAGER_LOGIN_CON = "2";
-
+    public static final String NO_USER_LOGIN_CON = "0";
     public static final String HOST = "http://localhost:8080";
 
     public static final String TEST_UID = "2017203133";

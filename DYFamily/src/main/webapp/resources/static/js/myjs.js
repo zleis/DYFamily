@@ -48,6 +48,16 @@ function format(shijianchuo)
     var mm = time.getMinutes();
     return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm);
 }
+
+function formatDate(shijianchuo)
+{
+    //shijianchuo是整数，否则要parseInt转换
+    var time = new Date(shijianchuo);
+    var y = time.getFullYear();
+    var m = time.getMonth()+1;
+    var d = time.getDate();
+    return y+'-'+add0(m)+'-'+add0(d);
+}
 function isRead(isread){
     if(typeof isread == "" ||isread == 1){
         return "未读";
@@ -75,8 +85,6 @@ function loadResult(feedback) {
     }
 }
 
-<<<<<<< HEAD
-=======
 /**
  * getBranchName
  * @author ZLei

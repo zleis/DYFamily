@@ -61,6 +61,28 @@ public class AdminController {
         return resJson.toString();
     }
 
+    /**
+     * function managerLogout
+     * @author ZLei
+     * @date 2017/9/19
+     * @param request, response
+     * @return java.lang.String
+     * @todo 管理员注销
+     */
+    @RequestMapping(value = "/managerLogout", method = RequestMethod.POST)
+    @ResponseBody
+    public String managerLogout(HttpServletRequest request, HttpServletResponse response){
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        JSONObject resJson = new JSONObject();
+        HttpSession session = request.getSession();
+        session.setAttribute("uid","");
+        session.setAttribute("login_con",GlobalVariable.NO_USER_LOGIN_CON);
+        resJson.put("feedback",GlobalVariable.REQUEST_SUCCESS);
+        return resJson.toString();
+    }
+
 
     /*----------------------------------- 公告管理 --------------------------*/
     /**
@@ -259,6 +281,89 @@ public class AdminController {
         return resJson.toString();
     }
 
+
+    /* --------------------------- 活动管理 ---------------------------*/
+
+    /**
+     * function addRecord
+     * @author ZLei
+     * @date 2017/9/25
+     * @return java.lang.String
+     * @todo 添加支部活动
+     */
+    @RequestMapping( value = "/addRecord", method = RequestMethod.POST)
+    @ResponseBody
+    public String addRecord(HttpServletRequest request, HttpServletResponse response){
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if( session.getAttribute("login_con") == null || !session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        int feedback = adminService.addRecord(paramJson, resJson);
+        resJson.put("feedback",feedback);
+        return resJson.toString();
+    }
+
+    /**
+     * function editRecord
+     * @author ZLei
+     * @date 2017/9/25
+     * @return java.lang.String
+     * @todo 添加支部活动
+     */
+    @RequestMapping( value = "/editRecord", method = RequestMethod.POST)
+    @ResponseBody
+    public String editRecord(HttpServletRequest request, HttpServletResponse response){
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if( session.getAttribute("login_con") == null || !session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        int feedback = adminService.editRecord(paramJson, resJson);
+        resJson.put("feedback",feedback);
+        return resJson.toString();
+    }
+
+    /**
+     * function delRecord
+     * @author ZLei
+     * @date 2017/9/25
+     * @return java.lang.String
+     * @todo 删除支部活动
+     */
+    @RequestMapping( value = "/delRecord", method = RequestMethod.POST)
+    @ResponseBody
+    public String delRecord(HttpServletRequest request, HttpServletResponse response){
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        HttpSession session = request.getSession();
+        JSONObject resJson = new JSONObject();
+
+        if( session.getAttribute("login_con") == null || !session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
+            return resJson.toString();
+        }
+
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        int feedback = adminService.delRecord(paramJson, resJson);
+        resJson.put("feedback",feedback);
+        return resJson.toString();
+    }
 
 
     @RequestMapping(value = "/mamagerLookUpUser", method = RequestMethod.POST)
