@@ -118,6 +118,16 @@ function loadErrorMsg(feedback) {
         return "登录失败,请重试";
     }else if(feedback == 10002){ // 文件上传出错
         return "文件上上传出错请重试";
+    }else if(feedback == 10003){
+        return "用户未登录";
+    }else if(feedback == 10004){
+        return "信息不完整";
+    }else if(feedback == 10005){
+        return "信息填写错误";
+    }else if(feedback == 10006){
+        return "用户不存在";
+    }else if(feedback == 10007){
+        return "获取公告失败";
     }
     return "";
 }

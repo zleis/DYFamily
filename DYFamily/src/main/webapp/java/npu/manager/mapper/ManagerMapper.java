@@ -235,6 +235,8 @@ public interface ManagerMapper{
      */
     public void delRecord(@Param(value = "rid") int rid);
 
+    public List<Advice> getAdviceList();
+
 
     /* ------------------------------  暂时用不到的操作  ------------------------------ */
     /**

@@ -1,5 +1,6 @@
 package npu.manager.beans;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 /**
@@ -13,11 +14,15 @@ import java.util.Date;
 public class Record {
 
     private int rid; // 活动ID
-    private String uid; // 记录人ID
+    private String bid; // 活动支部 ID
     private Date recordTime; // 活动时间
-    private String recordDetail; // 记录内容
-    private String fileName; // 记录文件内容
+    private int unNumber; // 应到人数
+    private int arrNumber; // 实到人数
+    private String theme; // 活动主题
+    private String place; //活动地点
     private String comment; // 记录备注
+    private String recordDetail; // 记录内容
+
 
     public Record() {
     }
@@ -37,17 +42,17 @@ public class Record {
     }
 
     /**
-     * @return uid : java.lang.String
+     * @return bid : java.lang.String
      */
-    public String getUid() {
-        return uid;
+    public String getBid() {
+        return bid;
     }
 
     /**
-     * @param uid : java.lang.String
+     * @param bid : java.lang.String
      */
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setBid(String bid) {
+        this.bid = bid;
     }
 
     /**
@@ -65,6 +70,62 @@ public class Record {
     }
 
     /**
+     * @return unNumber : int
+     */
+    public int getUnNumber() {
+        return unNumber;
+    }
+
+    /**
+     * @param unNumber : int
+     */
+    public void setUnNumber(int unNumber) {
+        this.unNumber = unNumber;
+    }
+
+    /**
+     * @return arrNumber : int
+     */
+    public int getArrNumber() {
+        return arrNumber;
+    }
+
+    /**
+     * @param arrNumber : int
+     */
+    public void setArrNumber(int arrNumber) {
+        this.arrNumber = arrNumber;
+    }
+
+    /**
+     * @return theme : java.lang.String
+     */
+    public String getTheme() {
+        return theme;
+    }
+
+    /**
+     * @param theme : java.lang.String
+     */
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    /**
+     * @return place : java.lang.String
+     */
+    public String getPlace() {
+        return place;
+    }
+
+    /**
+     * @param place : java.lang.String
+     */
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    /**
      * @return recordDetail : java.lang.String
      */
     public String getRecordDetail() {
@@ -76,20 +137,6 @@ public class Record {
      */
     public void setRecordDetail(String recordDetail) {
         this.recordDetail = recordDetail;
-    }
-
-    /**
-     * @return fileName : java.lang.String
-     */
-    public String getFileName() {
-        return fileName;
-    }
-
-    /**
-     * @param fileName : java.lang.String
-     */
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     /**
@@ -106,15 +153,40 @@ public class Record {
         this.comment = comment;
     }
 
+    public void setEncoding(){
+        try {
+            if(this.theme != null){
+                this.theme = URLEncoder.encode(this.theme, "utf-8");
+            }
+
+            if(this.place != null){
+                this.place = URLEncoder.encode(this.place,"utf-8");
+            }
+
+            if(this.comment != null){
+                this.comment = URLEncoder.encode(this.comment,"utf-8");
+            }
+
+            if(this.recordDetail != null){
+                this.recordDetail = URLEncoder.encode(this.recordDetail,"utf-8");
+            }
+        }catch (Exception e){
+            System.out.println("record setEncoding error");
+        }
+    }
+
     @Override
     public String toString() {
         return "Record{" +
                 "rid=" + rid +
-                ", uid='" + uid + '\'' +
+                ", bid='" + bid + '\'' +
                 ", recordTime=" + recordTime +
-                ", recordDetail='" + recordDetail + '\'' +
-                ", fileName='" + fileName + '\'' +
+                ", unNumber=" + unNumber +
+                ", arrNumber=" + arrNumber +
+                ", theme='" + theme + '\'' +
+                ", place='" + place + '\'' +
                 ", comment='" + comment + '\'' +
+                ", recordDetail='" + recordDetail + '\'' +
                 '}';
     }
 }

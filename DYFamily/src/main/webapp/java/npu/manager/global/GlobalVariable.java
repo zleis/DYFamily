@@ -18,7 +18,7 @@ public class GlobalVariable {
     public static final int NO_USER_LOGIN = 10003; // 用户未登录
     public static final int PARAM_IS_NULL = 10004; // HTTP请求信息不完整
     public static final int param_TYPE_ERROR = 10005; // 参数类型出错
-    public static final int USER_IS_NULL = 10006; // 用户不存在
+        public static final int USER_IS_NULL = 10006; // 用户不存在
     public static final int GET_NOTICE_ERROR = 10007; // 获取公告失败
 
     public static final int REGISTER_IDNOTNUM_ERROR = 11001; // 用户id不是数字

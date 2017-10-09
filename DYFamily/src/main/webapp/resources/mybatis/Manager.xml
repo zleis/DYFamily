@@ -86,6 +86,17 @@
         <result column="r_detail" property="recordDetail" />
     </resultMap>
 
+    <resultMap id="adviceMap" type="npu.manager.beans.Advice">
+        <result column="a_id" property="aid" />
+        <result column="u_id" property="uid" />
+        <result column="b_id" property="bid" />
+        <result column="m_id" property="mid" />
+        <result column="a_createtime" property="createTime" />
+        <result column="a_type" property="type" />
+        <result column="a_reid" property="reid" />
+        <result column="a_title" property="title" />
+        <result column="a_detail" property="detail" />
+    </resultMap>
     <!-- 通过ID获取User  -->
     <select id="getUserByID" resultMap="userMap">
         select * from user where u_id = #{uid}
@@ -291,4 +302,11 @@
     <delete id="delRecord">
         DELETE FROM record WHERE r_id = #{rid}
     </delete>
+
+
+
+    <!-- ******* 意见管理 ********** -->
+    <select id="getAdviceList" resultMap="adviceMap">
+        SELECT * from advice
+    </select>
 </mapper>

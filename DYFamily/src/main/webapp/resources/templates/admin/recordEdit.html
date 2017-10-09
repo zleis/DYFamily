@@ -146,6 +146,17 @@
             var recordCommon = $("#recordCommon").val();
             var recordDetail = $("#recordDetail").val();
 
+            if(branchName.length == 0){
+                alerterror("选择正确的支部信息");
+                return;
+            }
+            if(recordTheme.length == 0 || recordDate.length == 0 || recordPlace.length == 0
+                || recordUserNum.length == 0 || recordUserRelNum.length == 0 || recordCommon.length == 0
+                || recordDetail.length == 0 ){
+                alerterror("填写正确的活动信息");
+                return;
+            }
+
             var data = new Object();
             var sendurl = "/admin/editRecord";
             data["rid"] = encodeURI(recordID);

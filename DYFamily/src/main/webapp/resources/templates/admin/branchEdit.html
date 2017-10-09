@@ -69,9 +69,6 @@
             var branchName = $("#branchName").val();
             var branchDes = $("#branchDes").val();
 
-            if(branchID.length != 10){
-                alerterror("填写正确的支部ID");
-            }
             if(branchDes.length == 0 || branchName.length == 0){
                 alerterror("信息填写完整")
                 return;
