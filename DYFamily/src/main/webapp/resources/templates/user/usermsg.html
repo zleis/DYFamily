@@ -9,12 +9,11 @@
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"></meta>
 
     <link rel="stylesheet" href="/css/xadmin.css"></link>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>
+    <!--<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>-->
     <link href="/css/sweet-alert.css" rel="stylesheet" type="text/css"></link>
-    <link href="/css/mycss.css" rel="stylesheet" type="text/css"></link>
+    <!--<link href="/css/mycss.css" rel="stylesheet" type="text/css"></link>-->
 
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/js/xadmin.js"></script>
     <script src="/js/jquery-3.0.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -27,25 +26,145 @@
 </head>
 
 <body>
-<div class="x-nav">
-        <span class="layui-breadcrumb">
-            <a href="">首页</a>
-            <a>
-                <cite>信息完善</cite>
-            </a>
-      </span>
-    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
-       href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-</div>
-
-<div class="x-body">
-    <h1 id = "noticeTitle" style="text-align: center; font-size: 20px">信息完善</h1>
-    <br></br>
-    <div class="person-msg-update">
-        学号：
+<br></br>
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">学号</label>
+        <div class="layui-input-block">
+            <input type="text" value="onfocus=this.blur()" onfocus="this.blur()" name="uid" id="uid" lay-verify="required" placeholder="请输入学号" autocomplete="off" class="layui-input"></input>
+        </div>
     </div>
-</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline">
+            <input type="password" value="onfocus=this.blur()" onfocus="this.blur()" name="pass" id="pass" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"></input>
+        </div>
+        <div class="layui-form-mid layui-word-aux">辅助文字</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" id="name" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input"></input>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="男" title="男"></input>
+            <input type="radio" name="sex" value="女" title="女" checked = "true"></input>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生日</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="birth" placeholder="yyyy-MM-dd"></input>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" id="phone" lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input"></input>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-block">
+            <input type="text" name="mail" id="mail" lay-verify="required" placeholder="请输入邮箱号" autocomplete="off" class="layui-input"></input>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">年级</label>
+        <div class="layui-input-block">
+            <select name="grade" lay-verify="required">
+                <option value=""></option>
+                <option value="0">大一</option>
+                <option value="1">大二</option>
+                <option value="2">大三</option>
+                <option value="3">大四</option>
+                <option value="4">研一</option>
+                <option value="5">研二</option>
+                <option value="6">研三</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">班级</label>
+        <div class="layui-input-block">
+            <input type="text" name="classNum" id="classNum" lay-verify="required" placeholder="请输入班级号" autocomplete="off" class="layui-input"></input>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">党支部</label>
+        <div class="layui-input-block">
+            <input type="text" name="bid" id="bid" lay-verify="required" placeholder="请输入所属党支部" autocomplete="off" class="layui-input"></input>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">注册时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="registerTime" placeholder="yyyy-MM-dd"></input>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">特长</label>
+        <div class="layui-input-block">
+            <input type="text" name="special" id="special" lay-verify="required" placeholder="请输入个人特长" autocomplete="off" class="layui-input"></input>
+        </div>
+    </div>
+    <!--
+    <div class="layui-form-item">
+        <label class="layui-form-label">复选框</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="like[write]" title="写作"></input>
+            <input type="checkbox" name="like[read]" title="阅读"></input>
+            <input type="checkbox" name="like[dai]" title="发呆"></input>
+        </div>
+    </div>
+    -->
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">党的认识</label>
+        <div class="layui-input-block">
+            <textarea name="cognition" id="cognition" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit = "true" lay-filter="formDemo">立即完善</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
+<script>
+
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#birth'
+        });
+
+        laydate.render({
+            elem: '#registerTime'
+        });
+
+    });
+    document.getElementById("uid").value = "123456";
+    document.getElementById("pass").value = "123456";
+    //<![CDATA[
+    var uid = [[${uid}]];
+    alert("do you see me? .....................");
+    alert(uid);
+    //]]>
+
+</script>
+
 
 </body>
 

@@ -39,6 +39,16 @@ public class UserViewController {
         return model;
     }
 
+    @RequestMapping(value = "/usermsg", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView usermsg(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("user/usermsg");
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        model.addObject("uid",paramJson.getString("uid"));
+        return model;
+    }
+
     @RequestMapping(value = "/userindex", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView userIndex(HttpServletRequest request, HttpServletResponse response){
@@ -80,14 +90,6 @@ public class UserViewController {
     public ModelAndView advice(){
         ModelAndView model = new ModelAndView();
         model.setViewName("user/advice");
-        return model;
-    }
-
-    @RequestMapping(value = "/usermsg", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView usermsg(){
-        ModelAndView model = new ModelAndView();
-        model.setViewName("user/usermsg");
         return model;
     }
 
