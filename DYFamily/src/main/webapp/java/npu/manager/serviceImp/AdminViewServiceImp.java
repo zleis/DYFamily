@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2017/9/29
  * @todo
  */
-@Service
+@Service("adminViewService")
 public class AdminViewServiceImp implements AdminViewService{
 
     @Autowired

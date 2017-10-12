@@ -202,6 +202,28 @@ public class UserController {
         return resJson.toString();
     }
 
+    /**
+     * function userLogout
+     * @author ZLei
+     * @date 2017/10/11
+     * @return
+     * @todo 用户退出
+     */
+    @RequestMapping( value = "/userLogout", method = RequestMethod.POST)
+    @ResponseBody
+    public String userLogout(HttpServletRequest request, HttpServletResponse response){
+
+        //设置AJAX跨域访问
+        response.addHeader("Access-Control-Allow-Origin","*");
+
+        JSONObject resJson = new JSONObject();
+        HttpSession session = request.getSession();
+        session.setAttribute("uid","");
+        session.setAttribute("login_con","0");
+        resJson.put("feedback",GlobalVariable.REQUEST_SUCCESS);
+
+        return resJson.toString();
+    }
 
 
     /*********--------------完成中----------------------***************/

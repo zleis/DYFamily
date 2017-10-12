@@ -3,6 +3,8 @@ package npu.manager.controller;
 import com.alibaba.fastjson.JSONObject;
 import npu.manager.global.GlobalFun;
 import npu.manager.global.GlobalVariable;
+import npu.manager.service.UserViewService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/userView")
 public class UserViewController {
+
+    @Autowired
+    private UserViewService userViewService;
     /**
      * function userLogin
      * @author ZLei
@@ -44,8 +49,12 @@ public class UserViewController {
     public ModelAndView usermsg(HttpServletRequest request){
         ModelAndView model = new ModelAndView();
         model.setViewName("user/usermsg");
-        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
-        model.addObject("uid",paramJson.getString("uid"));
+        HttpSession session = request.getSession();
+        String uid = (String)session.getAttribute("uid");
+        JSONObject branchMsg = userViewService.getBranchList();
+        model.addObject("branchList",branchMsg.get("branchList"));
+        model.addObject("user",userViewService.getUserByID(uid));
+        model.addObject("uid",uid);
         return model;
     }
 
