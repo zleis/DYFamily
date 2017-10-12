@@ -17,7 +17,7 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/js/xadmin.js"></script>
-
+    <script type="text/javascript" src="/js/myjs.js"></script>
     <title>标题</title>
 </head>
 <body>
@@ -32,8 +32,7 @@
             <a href="javascript:;">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                 <dd><a onclick="x_admin_show('个人信息','/userView/usermsg')">个人信息</a></dd>
-                <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-                <dd><a href="./login.html">退出</a></dd>
+                <dd><a href="#" id = "userLogout">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
@@ -96,14 +95,18 @@
     <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved</div>
 </div>
 <!-- 底部结束 -->
-<script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+<script th:inline="javascript">
+    //<![CDATA[
+    //    console.log([[${userName}]]);
+    $(document).ready(function () {
+        $("#userLogout").click(function () {
+            var obj = new Object();
+            var sendurl = "/user/userLogout";
+            requestSend(sendurl,sendurl);
+            window.location.reload();
+        });
+    });
+    //]]>
 </script>
 </body>
 </html>
