@@ -216,19 +216,27 @@ public class UserServiceImp implements UserService {
         int sex, grade;
 
         try{
-            birth = GlobalVariable.sdf.parse(birthStr);
-            sex = Integer.parseInt(sexStr);
-            grade = Integer.parseInt(gradeStr);
-            registerTime = GlobalVariable.sdf.parse(registerTimeStr);
+
+            if (!(birthStr == null || birthStr.length() <= 0)) {
+                birth = GlobalVariable.sdf.parse(birthStr);
+                user.setBirth(birth);
+            }
+            if (!(sexStr == null || sexStr.length() <= 0)) {
+                sex = Integer.parseInt(sexStr);
+                user.setSex(sex);
+            }
+            if (!(gradeStr == null || gradeStr.length() <= 0)) {
+                grade = Integer.parseInt(gradeStr);
+                user.setGrade(grade);
+            }
+            if (!(registerTimeStr == null || registerTimeStr.length() <= 0)) {
+                registerTime = GlobalVariable.sdf.parse(registerTimeStr);
+                user.setRegisterTime(registerTime);
+            }
 
         }catch (Exception e){
             return GlobalVariable.param_TYPE_ERROR;
         }
-
-        user.setBirth(birth);
-        user.setSex(sex);
-        user.setGrade(grade);
-        user.setRegisterTime(registerTime);
 
         managerMapper.updateUserInfo(user);
         return GlobalVariable.REQUEST_SUCCESS;
