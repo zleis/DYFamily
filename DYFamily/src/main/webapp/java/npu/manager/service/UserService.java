@@ -93,4 +93,14 @@ public interface UserService {
     public int userRegister(JSONObject paramJson);
 
 
+    /**
+     * function updateUserInfo
+     * @author Mike
+     * @date 2017/10/12
+     * @param paramJson
+     * @return int 完善信息状态
+     * @todo 完善个人信息
+     */
+    public int updateUserInfo(JSONObject paramJson);
+
 }

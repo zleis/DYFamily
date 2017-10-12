@@ -17,7 +17,7 @@
         <result column="b_id" property="bid"/>
         <result column="u_regist_time" property="registerTime"/>
         <result column="u_spec" property="special"/>
-        <result column="u_cogition" property="cognition"/>
+        <result column="u_cognition" property="cognition"/>
         <result column="u_iscomp" property="isComp"/>
     </resultMap>
 
@@ -154,7 +154,25 @@
     <insert id="addUser" >
         INSERT INTO USER (u_id, u_pass) VALUES (#{uid}, #{pass});
     </insert>
-    
+
+    <update id="updateUserInfo">
+        UPDATE user SET
+        <trim  suffixOverrides=",">
+            <if test="name != null">u_name = #{name},</if>
+            <if test="sex != null">u_sex  = #{sex},</if>
+            <if test="birth != null">u_birth  = #{birth},</if>
+            <if test="phone != null">u_phone  = #{phone},</if>
+            <if test="mail != null">u_mail  = #{mail},</if>
+            <if test="grade != null">u_grade  = #{grade},</if>
+            <if test="classNum != null">u_class  = #{classNum},</if>
+            <if test="bid != null">b_id  = #{bid},</if>
+            <if test="registerTime != null">u_regist_time  = #{registerTime},</if>
+            <if test="special != null">u_spec  = #{special},</if>
+            <if test="cognition != null">u_cognition  = #{cognition},</if>
+        </trim>
+        where u_id = #{uid}
+    </update>
+
     <update id="addReadTimes">
         UPDATE notice set n_read_time = n_read_time + 1 where n_id = #{nid}
     </update>

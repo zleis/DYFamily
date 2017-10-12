@@ -15,6 +15,7 @@
 
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/xadmin.js"></script>
+    <script type="text/javascript" src="/lib/layui/layui.js"></script>
     <script src="/js/jquery-3.0.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/sweet-alert.min.js" ></script>
@@ -27,7 +28,7 @@
 
 <body>
 <br></br>
-<form class="layui-form">
+<form class="layui-form" action="">
     <div class="layui-form-item">
         <label class="layui-form-label">学号</label>
         <div class="layui-input-block">
@@ -64,13 +65,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-            <input id = "mail" type="text" name="mail" lay-verify="required" placeholder="请输入邮箱号" th:value="${user.mail}" autocomplete="off" class="layui-input"></input>
+            <input id = "mail" type="text" name="mail"  placeholder="请输入邮箱号" th:value="${user.mail}" autocomplete="off" class="layui-input"></input>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">年级</label>
         <div class="layui-input-block">
-            <select id = "grade" name="grade" lay-verify="required">
+            <select id = "grade" name="grade" lay-verify="required" >
                 <option value=""></option>
                 <option value="0">大一</option>
                 <option value="1">大二</option>
@@ -91,7 +92,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">党支部</label>
         <div class="layui-input-block">
-            <select id="bid" th:value="${user.bid}" name="grade" lay-verify="required">
+            <select id="bid" th:value="${user.bid}" name="grade"  lay-verify="required">
             </select>
         </div>
     </div>
@@ -106,24 +107,24 @@
     <div class="layui-form-item">
         <label class="layui-form-label">特长</label>
         <div class="layui-input-block">
-            <input id = "special" type="text" th:value="${user.special}" name="special" lay-verify="required" placeholder="请输入个人特长" autocomplete="off" class="layui-input"></input>
+            <input id = "special" type="text" th:value="${user.special}" name="special"  placeholder="请输入个人特长" autocomplete="off" class="layui-input"></input>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">党的认识</label>
         <div class="layui-input-block">
-            <textarea id = "cogition" name="cognition" th:value="${user.cognition}" placeholder="请输入内容" class="layui-textarea"></textarea>
+            <textarea id = "cogition" name="cognition" th:text="${user.cognition}" placeholder="请输入内容" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" id="submit">立即完善</button>
+            <button class="layui-btn" id="submit" >立即完善</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </form>
 
-<script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
+
 <script th:inline="javascript">
     //<![CDATA[
     layui.use('laydate', function() {
@@ -142,6 +143,7 @@
 
     var uid = [[${uid}]];
     var user = [[${user}]];
+    console.log(user);
     var branchList = [[${branchList}]];
     $(document).ready(function () {
         $("#bid").children('option').remove();
@@ -153,6 +155,8 @@
         $("#bid")[0].value = user.bid;
         $("#birth")[0].value = formatDate(user.birth);
         $("#registerTime")[0].value = formatDate(user.registerTime);
+        $("#grade")[0].value = user.grade;
+
         if(user.sex == '1'){
             $("#sexMan").attr("checked","checked");
         }else{
@@ -160,49 +164,48 @@
         }
 
         $("#submit").click(function () {
-           var uid = $("#uid").val();
-           var name = $("#name").val();
-           var sex = $("#sex").val();
-           var birth = $("#birth").val();
-           var phone = $("#phone").val();
-           var mail = $("#mail").val();
-           var grade = $("#grade").val();
-           var classNum = $("#classNum").val();
-           var bid = $("#bid").val();
-           var registerTime = $("#registerTime").val();
-           var special = $("#special").val();
-           var cogition = $("#cogition").val();
+            var uid = $("#uid").val();
+            var name = $("#name").val();
+            var sex = $("#sex").val();
+            var birth = $("#birth").val();
+            var phone = $("#phone").val();
+            var mail = $("#mail").val();
+            var grade = $("#grade").val();
+            var classNum = $("#classNum").val();
+            var bid = $("#bid").val();
+            var registerTime = $("#registerTime").val();
+            var special = $("#special").val();
+            var cogition = $("#cogition").val();
 
-           var data = new Object();
-           var sendUrl = "/user/updateUserInfo";
-           data['name'] = name;
-           data['sex'] = sex;
-           data['birth'] = birth;
-           data['phone'] = phone;
-           data['mail'] = mail;
-           data['grade'] = grade;
-           data['classNum'] = classNum;
-           data['bid'] = bid;
-           data['registerTime'] = registerTime;
-           data['special'] = special;
-           data['cogition'] = cogition;
-
-           var res = requestSend(sendUrl,data);
-           if(loadResult(res.feedback)){
-               swal("提示", "修改成功", "success");
-               $("#uid")[0].value = "";
-               $("#name")[0].value = "";
-               $("#sex")[0].value = "";
-               $("#birth")[0].value = "";
-               $("#phone")[0].value = "";
-               $("#mail")[0].value = "";
-               $("#grade")[0].value = "";
-               $("#classNum")[0].value = "";
-               $("#bid")[0].value = "";
-               $("#registerTime")[0].value = "";
-               $("#special")[0].value = "";
-               $("#cogition")[0].value = "";
-           }
+            var data = new Object();
+            var sendUrl = "/user/updateUserInfo";
+            data['name'] = name;
+            data['sex'] = sex;
+            data['birth'] = birth;
+            data['phone'] = phone;
+            data['mail'] = mail;
+            data['grade'] = grade;
+            data['classNum'] = classNum;
+            data['bid'] = bid;
+            data['registerTime'] = registerTime;
+            data['special'] = special;
+            data['cognition'] = cogition;
+            console.log(data);
+            var res = requestSend(sendUrl,data);
+            if(loadResult(res.feedback)){
+                $("#uid")[0].value = "";
+                $("#name")[0].value = "";
+                $("#sex")[0].value = "";
+                $("#birth")[0].value = "";
+                $("#phone")[0].value = "";
+                $("#mail")[0].value = "";
+                $("#grade")[0].value = "";
+                $("#classNum")[0].value = "";
+                $("#bid")[0].value = "";
+                $("#registerTime")[0].value = "";
+                $("#special")[0].value = "";
+                $("#cogition")[0].value = "";
+            }
         });
     });
     //]]>

@@ -190,4 +190,56 @@ public class UserServiceImp implements UserService {
             return GlobalVariable.REGISTER_IDNOTNUM_ERROR;
         }
     }
+
+    @Override
+    public int updateUserInfo(JSONObject paramJson) {
+
+        if(!paramJson.containsKey("uid")) {
+            return GlobalVariable.UPDATEMSG_ERROR;
+        }
+        User user = new User();
+        user.setUid(paramJson.getString("uid"));
+        user.setName(paramJson.getString("name"));
+        user.setPhone(paramJson.getString("phone"));
+        user.setMail(paramJson.getString("mail"));
+        user.setClassNum(paramJson.getString("classNum"));
+        user.setBid(paramJson.getString("bid"));
+        user.setSpecial(paramJson.getString("special"));
+        user.setCognition(paramJson.getString("cognition"));
+
+        String birthStr = paramJson.getString("birth");
+        String sexStr = paramJson.getString("sex");
+        String gradeStr = paramJson.getString("grade");
+        String registerTimeStr = paramJson.getString("registerTime");
+
+        Date birth,registerTime;
+        int sex, grade;
+
+        try{
+
+            if (!(birthStr == null || birthStr.length() <= 0)) {
+                birth = GlobalVariable.sdf.parse(birthStr);
+                user.setBirth(birth);
+            }
+            if (!(sexStr == null || sexStr.length() <= 0)) {
+                sex = Integer.parseInt(sexStr);
+                user.setSex(sex);
+            }
+            if (!(gradeStr == null || gradeStr.length() <= 0)) {
+                grade = Integer.parseInt(gradeStr);
+                user.setGrade(grade);
+            }
+            if (!(registerTimeStr == null || registerTimeStr.length() <= 0)) {
+                registerTime = GlobalVariable.sdf.parse(registerTimeStr);
+                user.setRegisterTime(registerTime);
+            }
+
+        }catch (Exception e){
+            return GlobalVariable.param_TYPE_ERROR;
+        }
+
+        managerMapper.updateUserInfo(user);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
 }

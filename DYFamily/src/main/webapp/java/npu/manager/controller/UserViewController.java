@@ -38,8 +38,9 @@ public class UserViewController {
      */
     @RequestMapping(value = "/userLogin", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView userLogin(){
+    public ModelAndView userLogin(HttpServletRequest request){
         ModelAndView model = new ModelAndView();
+
         model.setViewName("user/Login");
         return model;
     }
@@ -68,7 +69,8 @@ public class UserViewController {
             model.setViewName("user/Login");
             return model;
         }
-
+        String uid = (String)session.getAttribute("uid");
+        model.addObject("uid",uid);
         model.setViewName("user/index");
         return model;
     }

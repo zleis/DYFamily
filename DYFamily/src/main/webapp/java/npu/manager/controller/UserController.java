@@ -282,7 +282,10 @@ public class UserController {
             resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
             return resJson.toString();
         }
-        
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        paramJson.put("uid",session.getAttribute("uid"));
+        int feedback = userService.updateUserInfo(paramJson);
+        resJson.put("feedback", feedback);
 
         return resJson.toString();
 
