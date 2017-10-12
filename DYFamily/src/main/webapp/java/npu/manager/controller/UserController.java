@@ -260,7 +260,7 @@ public class UserController {
             resJson.put("feedback", GlobalVariable.NO_USER_LOGIN);
             return resJson.toString();
         }
-
+        
 
         return resJson.toString();
 
