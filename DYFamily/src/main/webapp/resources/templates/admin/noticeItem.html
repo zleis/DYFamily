@@ -42,7 +42,7 @@
         <span id = "createTime"></span>
         <span id = "readTime"></span>
     </div>
-    <div id = "detail" style="padding: 40px">
+    <div id = "detail" style="padding: 40px; font-size: 20px">
 
     </div>
 </div>
@@ -61,6 +61,7 @@
             $("#noticeTitle").text(decodeURI(noticeData.title));
             $("#createTime").text("创建时间：" + format(noticeData.createTimes));
             $("#readTime").text("阅读次数：" + noticeData.readTimes);
+//            var reg=new RegExp("\n","<br></br>");
             $("#detail").text(decodeURI(noticeData.detail));
         }
     });
