@@ -190,4 +190,48 @@ public class UserServiceImp implements UserService {
             return GlobalVariable.REGISTER_IDNOTNUM_ERROR;
         }
     }
+
+    @Override
+    public int updateUserInfo(JSONObject paramJson) {
+
+        if(!paramJson.containsKey("uid")) {
+            return GlobalVariable.UPDATEMSG_ERROR;
+        }
+        User user = new User();
+        user.setUid(paramJson.getString("uid"));
+        user.setName(paramJson.getString("name"));
+        user.setPhone(paramJson.getString("phone"));
+        user.setMail(paramJson.getString("mail"));
+        user.setClassNum(paramJson.getString("classNum"));
+        user.setBid(paramJson.getString("bid"));
+        user.setSpecial(paramJson.getString("special"));
+        user.setCognition(paramJson.getString("cognition"));
+
+        String birthStr = paramJson.getString("birth");
+        String sexStr = paramJson.getString("sex");
+        String gradeStr = paramJson.getString("grade");
+        String registerTimeStr = paramJson.getString("registerTime");
+
+        Date birth,registerTime;
+        int sex, grade;
+
+        try{
+            birth = GlobalVariable.sdf.parse(birthStr);
+            sex = Integer.parseInt(sexStr);
+            grade = Integer.parseInt(gradeStr);
+            registerTime = GlobalVariable.sdf.parse(registerTimeStr);
+
+        }catch (Exception e){
+            return GlobalVariable.param_TYPE_ERROR;
+        }
+
+        user.setBirth(birth);
+        user.setSex(sex);
+        user.setGrade(grade);
+        user.setRegisterTime(registerTime);
+
+        managerMapper.updateUserInfo(user);
+        return GlobalVariable.REQUEST_SUCCESS;
+    }
+
 }

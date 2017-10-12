@@ -3,6 +3,7 @@ package npu.manager.mapper;
 import npu.manager.beans.*;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -78,6 +79,14 @@ public interface ManagerMapper{
      * @todo 注册一个用户,只录入id与密码信息
      */
     public void addUser(@Param(value = "uid") String uid, @Param(value = "pass") String pass);
+
+    /**
+     * function updateUserInfo
+     * @author Mike
+     * @date 2017/10/12
+     * @todo 完善用户信息
+     */
+    public void updateUserInfo(User user);
 
     /**
      * function addReadTimes

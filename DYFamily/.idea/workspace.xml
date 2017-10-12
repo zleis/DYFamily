@@ -17,52 +17,96 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="usermsg.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/templates/user/usermsg.html">
+      <file leaf-file-name="ManagerMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/mapper/ManagerMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="81" column="28" lean-forward="false" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+            <state relative-caret-position="238">
+              <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/controller/UserController.java">
+      <file leaf-file-name="UserServiceImp.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/UserServiceImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="262" column="8" lean-forward="false" selection-start-line="262" selection-start-column="8" selection-end-line="262" selection-end-column="8" />
+            <state relative-caret-position="318">
+              <caret line="224" column="50" lean-forward="false" selection-start-line="224" selection-start-column="34" selection-end-line="224" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/service/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="103" column="29" lean-forward="false" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserViewController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/controller/UserViewController.java">
+      <file leaf-file-name="AdminServiceImp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/AdminServiceImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="109" column="5" lean-forward="true" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+            <state relative-caret-position="34">
+              <caret line="201" column="8" lean-forward="true" selection-start-line="201" selection-start-column="8" selection-end-line="201" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="noticeList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/templates/user/noticeList.html">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/beans/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="281">
-              <caret line="58" column="4" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="33" />
+              <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="noticeItem.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/templates/user/noticeItem.html">
+      <file leaf-file-name="Manager.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/mybatis/Manager.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="272">
+              <caret line="171" column="15" lean-forward="true" selection-start-line="171" selection-start-column="15" selection-end-line="171" selection-end-column="15" />
+              <folding>
+                <marker date="1507798354000" expanded="true" signature="2789:2827" ph="select * fro... user" />
+                <marker date="1507798354000" expanded="true" signature="2933:2974" ph="SELECT * fro... manager" />
+                <marker date="1507798354000" expanded="true" signature="4622:4660" ph="select * fro... user" />
+                <marker date="1507798354000" expanded="true" signature="4762:4998" ph="SELECT n.*,u... notice" />
+                <marker date="1507798354000" expanded="true" signature="4810:4855" ph="SELECT * fro... user_notice" />
+                <marker date="1507798354000" expanded="true" signature="5080:5120" ph="SELECT * FRO... notice" />
+                <marker date="1507798354000" expanded="true" signature="5202:5276" ph="UPDATE user_... " />
+                <marker date="1507798354000" expanded="true" signature="6532:6559" ph="SELECT count... notice" />
+                <marker date="1507798354000" expanded="true" signature="6610:6666" ph="INSERT INTO USER... " />
+                <marker date="1507798354000" expanded="true" signature="6724:7533" ph="UPDATE user " />
+                <marker date="1507798354000" expanded="true" signature="7588:7655" ph="UPDATE notic... " />
+                <marker date="1507798354000" expanded="true" signature="7829:7870" ph="SELECT * fro... manager" />
+                <marker date="1507798354000" expanded="true" signature="7993:8013" ph="SELECT * fro... notice" />
+                <marker date="1507798354000" expanded="true" signature="9035:9098" ph="SELECT * FRO... user_notice" />
+                <marker date="1507798354000" expanded="true" signature="9157:9208" ph="INSERT into user_notice" />
+                <marker date="1507798354000" expanded="true" signature="9267:9343" ph="UPDATE notic... " />
+                <marker date="1507798354000" expanded="true" signature="9395:9433" ph="DELETE FROM " />
+                <marker date="1507798354000" expanded="true" signature="9493:9536" ph="DELETE FROM " />
+                <marker date="1507798354000" expanded="true" signature="9656:9674" ph="SELECT * FRO... user" />
+                <marker date="1507798354000" expanded="true" signature="9764:9789" ph="SELECT COUNT... user" />
+                <marker date="1507798354000" expanded="true" signature="9914:9934" ph="SELECT * FRO... branch" />
+                <marker date="1507798354000" expanded="true" signature="10024:10051" ph="SELECT COUNT... branch" />
+                <marker date="1507798354000" expanded="true" signature="10107:10160" ph="INSERT INTO branch... " />
+                <marker date="1507798354000" expanded="true" signature="10216:10254" ph="DELETE FROM " />
+                <marker date="1507798354000" expanded="true" signature="10307:10382" ph="UPDATE branc... " />
+                <marker date="1507798354000" expanded="true" signature="10464:10504" ph="SELECT * FRO... branch" />
+                <marker date="1507798354000" expanded="true" signature="11765:11806" ph="SELECT * FRO... record" />
+                <marker date="1507798354000" expanded="true" signature="11888:11928" ph="SELECT * FRO... record" />
+                <marker date="1507798354000" expanded="true" signature="11987:12623" ph="UPDATE recor... " />
+                <marker date="1507798354000" expanded="true" signature="12679:12717" ph="DELETE FROM " />
+                <marker date="1507798354000" expanded="true" signature="12834:12854" ph="SELECT * fro... advice" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,11 +149,6 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/global/GlobalVariable.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/UserServiceImp.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/mapper/ManagerMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/mybatis/Manager.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/templates/user/Register.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/templates/user/Login.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/static/css/mcss.css" />
@@ -118,7 +157,12 @@
         <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/controller/UserViewController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/templates/user/usermsg.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/static/js/myjs.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/global/GlobalVariable.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/mapper/ManagerMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/mybatis/Manager.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/UserServiceImp.java" />
       </list>
     </option>
   </component>
@@ -247,100 +291,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DYFamily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DYFamily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DYFamily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DYFamily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DYFamily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DYFamily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -503,40 +453,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mapper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DYFamily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DYFamily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1125,12 +1041,12 @@
       <workItem from="1506827722043" duration="2289000" />
       <workItem from="1506928990823" duration="7306000" />
       <workItem from="1507001477370" duration="2780000" />
-      <workItem from="1507774331434" duration="14576000" />
+      <workItem from="1507774331434" duration="21302000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51604000" />
+    <option name="totallyTimeSpent" value="58330000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1188,16 +1104,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/UserServiceImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2025">
-          <caret line="148" column="45" lean-forward="false" selection-start-line="148" selection-start-column="45" selection-end-line="148" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
@@ -1242,6 +1148,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1005">
           <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1305,70 +1212,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="92" column="27" lean-forward="false" selection-start-line="92" selection-start-column="15" selection-end-line="92" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/UserServiceImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="168" column="49" lean-forward="true" selection-start-line="168" selection-start-column="49" selection-end-line="168" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/mapper/ManagerMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="104" column="4" lean-forward="true" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/static/conf/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/AdminViewServiceImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/AdminServiceImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-539">
-          <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/mybatis/Manager.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="93" column="48" lean-forward="true" selection-start-line="93" selection-start-column="48" selection-end-line="93" selection-end-column="48" />
-          <folding>
-            <marker date="1507793676000" expanded="true" signature="2789:2827" ph="select * fro... user" />
-            <marker date="1507793676000" expanded="true" signature="2933:2974" ph="SELECT * fro... manager" />
-            <marker date="1507793676000" expanded="true" signature="3078:3222" ph="SELECT * FRO... notice" />
-            <marker date="1507793676000" expanded="true" signature="3304:3344" ph="SELECT * FRO... notice" />
-            <marker date="1507793676000" expanded="true" signature="3426:3500" ph="UPDATE user_... " />
-            <marker date="1507793676000" expanded="true" signature="4756:4808" ph="SELECT COUNT... user_notice" />
-            <marker date="1507793676000" expanded="true" signature="4859:4915" ph="INSERT INTO USER... " />
-            <marker date="1507793676000" expanded="true" signature="5058:5076" ph="SELECT * FRO... user" />
-            <marker date="1507793676000" expanded="true" signature="5154:5174" ph="SELECT * FRO... branch" />
-            <marker date="1507793676000" expanded="true" signature="5252:5272" ph="SELECT * fro... notice" />
-            <marker date="1507793676000" expanded="true" signature="5363:5390" ph="SELECT count... notice" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1468,14 +1315,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/global/GlobalVariable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="26" column="18" lean-forward="true" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/global/GlobalFun.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
@@ -1532,14 +1371,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/beans/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="29" column="28" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/templates/user/noticeItem.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1564,14 +1395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/controller/UserViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="109" column="5" lean-forward="true" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/templates/user/usermsg.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="71">
@@ -1580,11 +1403,125 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/global/GlobalVariable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/UserViewServiceImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/mapper/ManagerMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="88" column="30" lean-forward="false" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="262" column="8" lean-forward="false" selection-start-line="262" selection-start-column="8" selection-end-line="262" selection-end-column="8" />
+        <state relative-caret-position="-25">
+          <caret line="247" column="44" lean-forward="false" selection-start-line="247" selection-start-column="30" selection-end-line="247" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/AdminViewServiceImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-229">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/controller/UserViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-583">
+          <caret line="45" column="39" lean-forward="false" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/mybatis/Manager.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="171" column="15" lean-forward="true" selection-start-line="171" selection-start-column="15" selection-end-line="171" selection-end-column="15" />
+          <folding>
+            <marker date="1507798354000" expanded="true" signature="2789:2827" ph="select * fro... user" />
+            <marker date="1507798354000" expanded="true" signature="2933:2974" ph="SELECT * fro... manager" />
+            <marker date="1507798354000" expanded="true" signature="4622:4660" ph="select * fro... user" />
+            <marker date="1507798354000" expanded="true" signature="4762:4998" ph="SELECT n.*,u... notice" />
+            <marker date="1507798354000" expanded="true" signature="4810:4855" ph="SELECT * fro... user_notice" />
+            <marker date="1507798354000" expanded="true" signature="5080:5120" ph="SELECT * FRO... notice" />
+            <marker date="1507798354000" expanded="true" signature="5202:5276" ph="UPDATE user_... " />
+            <marker date="1507798354000" expanded="true" signature="6532:6559" ph="SELECT count... notice" />
+            <marker date="1507798354000" expanded="true" signature="6610:6666" ph="INSERT INTO USER... " />
+            <marker date="1507798354000" expanded="true" signature="6724:7533" ph="UPDATE user " />
+            <marker date="1507798354000" expanded="true" signature="7588:7655" ph="UPDATE notic... " />
+            <marker date="1507798354000" expanded="true" signature="7829:7870" ph="SELECT * fro... manager" />
+            <marker date="1507798354000" expanded="true" signature="7993:8013" ph="SELECT * fro... notice" />
+            <marker date="1507798354000" expanded="true" signature="9035:9098" ph="SELECT * FRO... user_notice" />
+            <marker date="1507798354000" expanded="true" signature="9157:9208" ph="INSERT into user_notice" />
+            <marker date="1507798354000" expanded="true" signature="9267:9343" ph="UPDATE notic... " />
+            <marker date="1507798354000" expanded="true" signature="9395:9433" ph="DELETE FROM " />
+            <marker date="1507798354000" expanded="true" signature="9493:9536" ph="DELETE FROM " />
+            <marker date="1507798354000" expanded="true" signature="9656:9674" ph="SELECT * FRO... user" />
+            <marker date="1507798354000" expanded="true" signature="9764:9789" ph="SELECT COUNT... user" />
+            <marker date="1507798354000" expanded="true" signature="9914:9934" ph="SELECT * FRO... branch" />
+            <marker date="1507798354000" expanded="true" signature="10024:10051" ph="SELECT COUNT... branch" />
+            <marker date="1507798354000" expanded="true" signature="10107:10160" ph="INSERT INTO branch... " />
+            <marker date="1507798354000" expanded="true" signature="10216:10254" ph="DELETE FROM " />
+            <marker date="1507798354000" expanded="true" signature="10307:10382" ph="UPDATE branc... " />
+            <marker date="1507798354000" expanded="true" signature="10464:10504" ph="SELECT * FRO... branch" />
+            <marker date="1507798354000" expanded="true" signature="11765:11806" ph="SELECT * FRO... record" />
+            <marker date="1507798354000" expanded="true" signature="11888:11928" ph="SELECT * FRO... record" />
+            <marker date="1507798354000" expanded="true" signature="11987:12623" ph="UPDATE recor... " />
+            <marker date="1507798354000" expanded="true" signature="12679:12717" ph="DELETE FROM " />
+            <marker date="1507798354000" expanded="true" signature="12834:12854" ph="SELECT * fro... advice" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/beans/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="103" column="29" lean-forward="false" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/AdminServiceImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="201" column="8" lean-forward="true" selection-start-line="201" selection-start-column="8" selection-end-line="201" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/java/npu/manager/serviceImp/UserServiceImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="224" column="50" lean-forward="false" selection-start-line="224" selection-start-column="34" selection-end-line="224" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

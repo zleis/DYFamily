@@ -23,6 +23,7 @@ public class GlobalVariable {
 
     public static final int REGISTER_IDNOTNUM_ERROR = 11001; // 用户id不是数字
     public static final int REGISTER_IDLENGTH_ERROR = 11002; // 用户id不是数字
+    public static final int UPDATEMSG_ERROR = 11003; // 完善信息提交失败
 
     public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     /**
