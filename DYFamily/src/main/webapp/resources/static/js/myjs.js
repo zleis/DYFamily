@@ -75,8 +75,6 @@ function loadResult(feedback) {
     }
 }
 
-<<<<<<< HEAD
-=======
 /**
  * getBranchName
  * @author ZLei

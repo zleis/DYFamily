@@ -262,11 +262,6 @@ public class UserController {
         }
 
 
-
-        /**
-         * todo
-         */
-
         return resJson.toString();
 
     }
