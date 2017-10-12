@@ -199,6 +199,44 @@ public interface ManagerMapper{
      */
     public Branch getBranchByID(@Param(value = "bid") String bid);
 
+    /* ------------  支部活动操作  ------------- */
+
+    /**
+     * function insertRecord
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 添加Record
+     */
+    public void insertRecord(Record record);
+
+    /**
+     * function getRecordList
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 获取Record列表
+     */
+    public List<Record> getRecordList();
+
+    public Record getRecordByID(@Param(value = "rid") int rid);
+
+    /**
+     * function updateRecord
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 更新Record
+     */
+    public void updateRecord(Record record);
+
+    /**
+     * function delRecord
+     * @author ZLei
+     * @date 2017/9/28
+     * @todo 更新Record
+     */
+    public void delRecord(@Param(value = "rid") int rid);
+
+    public List<Advice> getAdviceList();
+
 
     /* ------------------------------  暂时用不到的操作  ------------------------------ */
     /**

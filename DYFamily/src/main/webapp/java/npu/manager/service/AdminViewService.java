@@ -3,6 +3,7 @@ package npu.manager.service;
 import com.alibaba.fastjson.JSONObject;
 import npu.manager.beans.Branch;
 import npu.manager.beans.Notice;
+import npu.manager.beans.Record;
 
 /**
  * Created by  on .
@@ -52,7 +53,7 @@ public interface AdminViewService {
     public JSONObject getUserByID(String uid);
 
     /**
-     * function getUserList
+     * function getBranchList
      * @author ZLei
      * @date 2017/9/30
      * @todo 获取支部列表
@@ -60,11 +61,21 @@ public interface AdminViewService {
     public JSONObject getBranchList();
 
     /**
-     * function getUserList
+     * function getBranchByID
      * @author ZLei
      * @date 2017/9/30
      * @todo 获取支部详细信息
      */
     public Branch getBranchByID(String bid);
+
+    /**
+     * function getRecordList
+     * @author ZLei
+     * @date 2017/9/30
+     * @todo 获取支部详细信息
+     */
+    public JSONObject getRecordList();
+
+    public Record getRecordByID(int rid);
 
 }

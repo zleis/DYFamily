@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import npu.manager.beans.Branch;
 import npu.manager.beans.Notice;
+import npu.manager.beans.Record;
 import npu.manager.global.GlobalFun;
 import npu.manager.global.GlobalVariable;
 import npu.manager.service.AdminViewService;
@@ -68,6 +69,7 @@ public class AdminViweController {
         adminViewService.getAdminPower((String)session.getAttribute("uid"));
         JSONObject jsonObject = GlobalFun.getMenu(1);
         model.addObject("menu",jsonObject);
+        model.addObject("userName",session.getAttribute("uid"));
         model.setViewName("admin/Index");
         return model;
     }
@@ -282,5 +284,79 @@ public class AdminViweController {
         return model;
     }
 
+
+    /* ---------------------- 活动记录 ------------------------- */
+    /**
+     * function recordAdd
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  修改支部
+     */
+    @RequestMapping(value = "/recordAdd", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView recordAdd(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+        JSONObject msg = adminViewService.getBranchList();
+        model.addObject("branchList",msg.get("branchList"));
+        model.setViewName("admin/recordAdd");
+        return model;
+    }
+
+    /**
+     * function recordList
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  活动记录列表
+     */
+    @RequestMapping(value = "/recordList", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView recordList(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+        JSONObject branchMsg = adminViewService.getBranchList();
+        JSONObject recordMsg = adminViewService.getRecordList();
+//        System.out.println(recordMsg.toString());
+        model.addObject("branchList",branchMsg.get("branchList"));
+        model.addObject("recordList",recordMsg.get("recordList"));
+        model.setViewName("admin/recordList");
+        return model;
+    }
+
+    /**
+     * function branchEdit
+     * @author ZLei
+     * @date 2017/9/27
+     * @return
+     * @todo  修改支部活动
+     */
+    @RequestMapping(value = "/recordEdit", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView recordEdit(HttpServletRequest request){
+        ModelAndView model = new ModelAndView();
+        HttpSession session = request.getSession();
+        if(!session.getAttribute("login_con").equals(GlobalVariable.MANAGER_LOGIN_CON)){
+            model.setViewName("admin/Login");
+            return model;
+        }
+        JSONObject paramJson = GlobalFun.getParamFromRequest(request);
+        JSONObject branchMsg = adminViewService.getBranchList();
+        Record msg = adminViewService.getRecordByID(Integer.parseInt(paramJson.getString("rid")));
+
+        model.addObject("record",msg);
+        model.addObject("branchList",branchMsg.get("branchList"));
+        model.setViewName("admin/recordEdit");
+        return model;
+    }
 
 }

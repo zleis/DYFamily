@@ -74,7 +74,29 @@
         <result column="b_detail" property="bDetail" />
     </resultMap>
 
+    <resultMap id="recordMap" type="npu.manager.beans.Record">
+        <result column="r_id" property="rid" />
+        <result column="b_id" property="bid" />
+        <result column="r_date" property="recordTime" />
+        <result column="r_unum" property="unNumber" />
+        <result column="r_arrnum" property="arrNumber" />
+        <result column="r_theme" property="theme" />
+        <result column="r_place" property="place" />
+        <result column="r_common" property="comment" />
+        <result column="r_detail" property="recordDetail" />
+    </resultMap>
 
+    <resultMap id="adviceMap" type="npu.manager.beans.Advice">
+        <result column="a_id" property="aid" />
+        <result column="u_id" property="uid" />
+        <result column="b_id" property="bid" />
+        <result column="m_id" property="mid" />
+        <result column="a_createtime" property="createTime" />
+        <result column="a_type" property="type" />
+        <result column="a_reid" property="reid" />
+        <result column="a_title" property="title" />
+        <result column="a_detail" property="detail" />
+    </resultMap>
     <!-- 通过ID获取User  -->
     <select id="getUserByID" resultMap="userMap">
         select * from user where u_id = #{uid}
@@ -228,4 +250,63 @@
         SELECT * FROM branch WHERE b_id = #{bid}
     </select>
 
+    <!-- ************ 支部活动管理 ************* -->
+    
+    <insert id="insertRecord">
+        INSERT into record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bid != null">b_id,</if>
+            <if test="recordTime != null">r_date,</if>
+            <if test="unNumber != null">r_unum,</if>
+            <if test="arrNumber != null">r_arrnum,</if>
+            <if test="theme != null">r_theme,</if>
+            <if test="place != null">r_place,</if>
+            <if test="comment != null">r_common,</if>
+            <if test="recordDetail != null">r_detail,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bid != null">#{bid},</if>
+            <if test="recordTime != null">#{recordTime, jdbcType=TIMESTAMP},</if>
+            <if test="unNumber != null">#{unNumber},</if>
+            <if test="arrNumber != null">#{arrNumber},</if>
+            <if test="theme != null">#{theme},</if>
+            <if test="place != null">#{place},</if>
+            <if test="comment != null">#{comment} ,</if>
+            <if test="recordDetail != null">#{recordDetail} ,</if>
+        </trim>
+    </insert>
+    
+    <select id="getRecordList" resultMap="recordMap">
+        SELECT * FROM record ORDER BY r_date DESC
+    </select>
+    
+    <select id="getRecordByID" resultMap="recordMap">
+        SELECT * FROM record where r_id = #{rid}
+    </select>
+    
+    <update id="updateRecord">
+        UPDATE record SET
+        <trim  suffixOverrides=",">
+            <if test="bid != null">b_id = #{bid},</if>
+            <if test="recordTime != null">r_date  = #{recordTime},</if>
+            <if test="unNumber != null">r_unum  = #{unNumber},</if>
+            <if test="arrNumber != null">r_arrnum  = #{arrNumber},</if>
+            <if test="theme != null">r_theme  = #{theme},</if>
+            <if test="place != null">r_place  = #{place},</if>
+            <if test="comment != null">r_common  = #{comment},</if>
+            <if test="recordDetail != null">r_detail  = #{recordDetail},</if>
+        </trim>
+        where r_id = #{rid}
+    </update>
+    
+    <delete id="delRecord">
+        DELETE FROM record WHERE r_id = #{rid}
+    </delete>
+
+
+
+    <!-- ******* 意见管理 ********** -->
+    <select id="getAdviceList" resultMap="adviceMap">
+        SELECT * from advice
+    </select>
 </mapper>

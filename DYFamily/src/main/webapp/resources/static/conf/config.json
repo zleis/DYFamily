@@ -40,11 +40,11 @@
       "childMenu":{
         "listBranch": {
           "name": "记录列表",
-          "url": "/adminView/adminLogin"
+          "url": "recordList"
         },
         "addBranch": {
           "name": "添加记录",
-          "url": "/adminView/adminLogin"
+          "url": "recordAdd"
         }
       }
     }

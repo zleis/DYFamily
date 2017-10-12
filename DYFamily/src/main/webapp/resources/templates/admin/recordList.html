@@ -26,7 +26,7 @@
         <span class="layui-breadcrumb">
             <a href="">首页</a>
             <a>
-                <cite>公告列表</cite>
+                <cite>活动列表</cite>
             </a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
@@ -38,12 +38,13 @@
         <thead>
         <tr>
             <th>编号</th>
-            <th>学号</th>
-            <th>姓名</th>
-            <th>所属支部</th>
+            <th>支部名称</th>
+            <th>活动主题</th>
+            <th>活动日期</th>
+            <th>操作</th>
         </tr>
         </thead>
-        <tbody id = "noticeList">
+        <tbody id = "recordList">
         </tbody>
     </table>
     <div class="page">
@@ -55,31 +56,57 @@
 <script th:inline="javascript">
 
     //<![CDATA[
-    var userList = [[${userList}]];
     var branchList = [[${branchList}]];
-    var userLen = userList.length;
+    var recordList = [[${recordList}]];
+    var recordLen = recordList.length;
     var pageLen = 20;
     var pageNum = 1;
 
-    function userDetail(id) {
-        location.href = "./userItem?uid="+id;
-    }
+    function recordDel(node, id){
+        swal({
+                title: "确定",
+                text: "您将删除该支部活动，是否确定",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false
+            },
+            function(){
+                var data = new Object();
+                var sendurl = "/admin/delRecord";
+                data['rid'] = id;
+                requestSend(sendurl, data);
+                window.location.reload();
+            });
 
+    }
+    function readRecord(id) {
+        location.href = "./reocrdItem?rid="+id;
+    }
     function loadTable(pNode,page){
         var start = ( page - 1 ) * pageLen;
         var table = "";
         for(var index = start; index < start + pageLen; index++)
         {
-            if( typeof userList[index]  == "undefined" ){
+            if(typeof recordList[index]  == "undefined"){
                 break;
             }
             var row = "";
             row += "<tr>";
             row += "<td>" + (index+1) + "</td>";
-            row += "<td><a onclick='userDetail(" + userList[index].uid + ")' href='#'>" + decodeURI(userList[index].uid) + "</a></td>";
-            row += "<td>" + decodeURI(userList[index].name) + "</td>";
-            row += "<td>" + getBranchName(userList[index].bid, branchList) + "</td>";
-
+            row += "<td><a onclick='readRecord(" + recordList[index].rid + ")' href='#'>" + getBranchName(recordList[index].bid, branchList) + "</a></td>";
+            row += "<td>" + decodeURI(recordList[index].theme) + "</td>";
+            row += "<td>" + (recordList[index].recordTime) + "</td>";
+            row += "<td>";
+            row += "<a title=\"编辑\"  onclick=\"x_admin_show('编辑','/adminView/recordEdit?rid=" + recordList[index].rid + "',600,400)\" href=\"javascript:;\">" +
+                "<i class=\"layui-icon\">&#xe642;</i>" +
+                "</a>" +
+                "<a title=\"删除\" onclick=\"recordDel(this," + recordList[index].rid + ")\" href=\"javascript:;\">" +
+                "<i class=\"layui-icon\">&#xe640;</i>" +
+                "</a>";
+            row += "</tr>";
             table += row;
         }
         pNode.children('tr').remove();
@@ -87,11 +114,11 @@
         $("#pageList").children('a').remove();
         $("#pageList").children('span').remove();
         var pageList = "";
-        for( var i = 0; i <= userLen/pageLen; i++){
+        for( var i = 0; i <= recordLen/pageLen; i++){
             if( i != (page-1) ){
-                pageList += "<a id = 'page" + i + "' class='num' href='#' onclick='loadTable($(\"#noticeList\"), " +  (i+1) + " )'>" + (i+1) + "</a>";
+                pageList += "<a id = 'page" + i + "' class='num' href='#' onclick='loadTable(" + pNode + "," +  (i+1) + " )'>" + (i+1) + "</a>";
             }else{
-                pageList += "<span id = 'page" + i + "' class='current' href='#' onclick='loadTable($(\"#noticeList\"), " +  (i+1) + " )'>" + (i+1) + "</span>";
+                pageList += "<span id = 'page" + i + "' class='current' href='#' onclick='loadTable(" + pNode + "," +  (i+1) + " )'>" + (i+1) + "</span>";
             }
 
         }
@@ -100,9 +127,8 @@
     }
     $(document).ready(function () {
         function loadData(page){
-//            console.log(userList);
-//            console.log(branchList);
-            loadTable($("#noticeList"),page);
+//            console.log(recordList);
+            loadTable($("#recordList"),page);
         }
 
         loadData(1);
