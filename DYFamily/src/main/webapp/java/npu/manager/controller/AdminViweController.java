@@ -326,7 +326,7 @@ public class AdminViweController {
         }
         JSONObject branchMsg = adminViewService.getBranchList();
         JSONObject recordMsg = adminViewService.getRecordList();
-//        System.out.println(recordMsg.toString());
+
         model.addObject("branchList",branchMsg.get("branchList"));
         model.addObject("recordList",recordMsg.get("recordList"));
         model.setViewName("admin/recordList");

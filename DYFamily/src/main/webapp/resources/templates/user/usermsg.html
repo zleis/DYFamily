@@ -31,53 +31,46 @@
     <div class="layui-form-item">
         <label class="layui-form-label">学号</label>
         <div class="layui-input-block">
-            <input type="text" value="onfocus=this.blur()" onfocus="this.blur()" name="uid" id="uid" lay-verify="required" placeholder="请输入学号" autocomplete="off" class="layui-input"></input>
+            <input id = "uid" disabled = "true" type="text" th:value="${user.uid}" name="uid" lay-verify="required" placeholder="请输入学号" autocomplete="off" class="layui-input"></input>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">密码</label>
-        <div class="layui-input-inline">
-            <input type="password" value="onfocus=this.blur()" onfocus="this.blur()" name="pass" id="pass" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"></input>
-        </div>
-        <div class="layui-form-mid layui-word-aux">辅助文字</div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" name="name" id="name" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input"></input>
+            <input id = "name"  type="text" th:value="${user.name}" name="name" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input"></input>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
-        <div class="layui-input-block">
-            <input type="radio" name="sex" value="男" title="男"></input>
-            <input type="radio" name="sex" value="女" title="女" checked = "true"></input>
+        <div id = "sex"  class="layui-input-block">
+            <input id = "sexMan" type="radio" name="sex" value="1" title="男" checked = "false"></input>
+            <input id = "sexWoman" type="radio" name="sex" value="2" title="女"></input>
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">生日</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="birth" placeholder="yyyy-MM-dd"></input>
+                <input id = "birth" type="text" class="layui-input" placeholder="yyyy-MM-dd" th:value="${user.birth}"></input>
             </div>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">手机</label>
         <div class="layui-input-block">
-            <input type="text" name="phone" id="phone" lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input"></input>
+            <input id = "phone" type="text" name="phone" lay-verify="required" placeholder="请输入手机号" th:value="${user.phone}" autocomplete="off" class="layui-input"></input>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-            <input type="text" name="mail" id="mail" lay-verify="required" placeholder="请输入邮箱号" autocomplete="off" class="layui-input"></input>
+            <input id = "mail" type="text" name="mail" lay-verify="required" placeholder="请输入邮箱号" th:value="${user.mail}" autocomplete="off" class="layui-input"></input>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">年级</label>
         <div class="layui-input-block">
-            <select name="grade" lay-verify="required">
+            <select id = "grade" name="grade" lay-verify="required">
                 <option value=""></option>
                 <option value="0">大一</option>
                 <option value="1">大二</option>
@@ -92,56 +85,47 @@
     <div class="layui-form-item">
         <label class="layui-form-label">班级</label>
         <div class="layui-input-block">
-            <input type="text" name="classNum" id="classNum" lay-verify="required" placeholder="请输入班级号" autocomplete="off" class="layui-input"></input>
+            <input id = "classNum" type="text" th:value="${user.classNum}" name="classNum" lay-verify="required" placeholder="请输入班级号" autocomplete="off" class="layui-input"></input>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">党支部</label>
         <div class="layui-input-block">
-            <input type="text" name="bid" id="bid" lay-verify="required" placeholder="请输入所属党支部" autocomplete="off" class="layui-input"></input>
+            <select id="bid" th:value="${user.bid}" name="grade" lay-verify="required">
+            </select>
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">注册时间</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="registerTime" placeholder="yyyy-MM-dd"></input>
+                <input id = "registerTime" type="text"  th:value="${user.registerTime}" class="layui-input" placeholder="yyyy-MM-dd"></input>
             </div>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">特长</label>
         <div class="layui-input-block">
-            <input type="text" name="special" id="special" lay-verify="required" placeholder="请输入个人特长" autocomplete="off" class="layui-input"></input>
+            <input id = "special" type="text" th:value="${user.special}" name="special" lay-verify="required" placeholder="请输入个人特长" autocomplete="off" class="layui-input"></input>
         </div>
     </div>
-    <!--
-    <div class="layui-form-item">
-        <label class="layui-form-label">复选框</label>
-        <div class="layui-input-block">
-            <input type="checkbox" name="like[write]" title="写作"></input>
-            <input type="checkbox" name="like[read]" title="阅读"></input>
-            <input type="checkbox" name="like[dai]" title="发呆"></input>
-        </div>
-    </div>
-    -->
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">党的认识</label>
         <div class="layui-input-block">
-            <textarea name="cognition" id="cognition" placeholder="请输入内容" class="layui-textarea"></textarea>
+            <textarea id = "cogition" name="cognition" th:value="${user.cognition}" placeholder="请输入内容" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit = "true" lay-filter="formDemo">立即完善</button>
+            <button class="layui-btn" id="submit" lay-submit = "true" lay-filter="formDemo">立即完善</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </form>
 
 <script type="text/javascript" src="/lib/layui/layui.js" charset="utf-8"></script>
-<script>
-
+<script th:inline="javascript">
+    //<![CDATA[
     layui.use('laydate', function() {
         var laydate = layui.laydate;
 
@@ -155,12 +139,74 @@
         });
 
     });
-    document.getElementById("uid").value = "123456";
-    document.getElementById("pass").value = "123456";
-    //<![CDATA[
+
     var uid = [[${uid}]];
-    alert("do you see me? .....................");
-    alert(uid);
+    var user = [[${user}]];
+    var branchList = [[${branchList}]];
+    $(document).ready(function () {
+        $("#bid").children('option').remove();
+        var option = "";
+        for(var i = 0; i < branchList.length; i++){
+            option += "<option value = '" + branchList[i].bid + "'>" + decodeURI(branchList[i].bName) + "</option>";
+        }
+        $("#bid").append(option);
+        $("#bid")[0].value = user.bid;
+        $("#birth")[0].value = formatDate(user.birth);
+        $("#registerTime")[0].value = formatDate(user.registerTime);
+        if(user.sex == '1'){
+            $("#sexMan").attr("checked","checked");
+        }else{
+            $("#sexWoman").attr("checked","checked");
+        }
+
+        $("#submit").click(function () {
+           var uid = $("#uid").val();
+           var pass = $("#pass").val();
+           var name = $("#name").val();
+           var sex = $("#sex").val();
+           var birth = $("#birth").val();
+           var phone = $("#phone").val();
+           var mail = $("#mail").val();
+           var grade = $("#grade").val();
+           var classNum = $("#classNum").val();
+           var bid = $("#bid").val();
+           var registerTime = $("#registerTime").val();
+           var special = $("#special").val();
+           var cogition = $("#cogition").val();
+
+           var data = new Object();
+           var sendUrl = "/user/updateUserInfo";
+           data['pass'] = pass;
+           data['name'] = name;
+           data['sex'] = sex;
+           data['birth'] = birth;
+           data['phone'] = phone;
+           data['mail'] = mail;
+           data['grade'] = grade;
+           data['classNum'] = classNum;
+           data['bid'] = bid;
+           data['registerTime'] = registerTime;
+           data['special'] = special;
+           data['cogition'] = cogition;
+
+           var res = requestSend(sendUrl,data);
+           if(loadResult(res.feedback)){
+               $("#uid")[0].value = "";
+               $("#pass")[0].value = "";
+               $("#name")[0].value = "";
+               $("#sex")[0].value = "";
+               $("#birth")[0].value = "";
+               $("#phone")[0].value = "";
+               $("#mail")[0].value = "";
+               $("#grade")[0].value = "";
+               $("#classNum")[0].value = "";
+               $("#bid")[0].value = "";
+               $("#registerTime")[0].value = "";
+               $("#special")[0].value = "";
+               $("#cogition")[0].value = "";
+           }
+        });
+    });
     //]]>
 
 </script>
