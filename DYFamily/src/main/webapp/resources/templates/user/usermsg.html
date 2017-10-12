@@ -27,7 +27,7 @@
 
 <body>
 <br></br>
-<form class="layui-form" action="">
+<form class="layui-form">
     <div class="layui-form-item">
         <label class="layui-form-label">学号</label>
         <div class="layui-input-block">
@@ -117,7 +117,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" id="submit" lay-submit = "true" lay-filter="formDemo">立即完善</button>
+            <button class="layui-btn" id="submit">立即完善</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -161,7 +161,6 @@
 
         $("#submit").click(function () {
            var uid = $("#uid").val();
-           var pass = $("#pass").val();
            var name = $("#name").val();
            var sex = $("#sex").val();
            var birth = $("#birth").val();
@@ -176,7 +175,6 @@
 
            var data = new Object();
            var sendUrl = "/user/updateUserInfo";
-           data['pass'] = pass;
            data['name'] = name;
            data['sex'] = sex;
            data['birth'] = birth;
@@ -191,8 +189,8 @@
 
            var res = requestSend(sendUrl,data);
            if(loadResult(res.feedback)){
+               swal("提示", "修改成功", "success");
                $("#uid")[0].value = "";
-               $("#pass")[0].value = "";
                $("#name")[0].value = "";
                $("#sex")[0].value = "";
                $("#birth")[0].value = "";
